@@ -1,0 +1,43 @@
+name: MGHub
+version: 1.0
+main: fr.pandamcbe.mghub.MGHub
+depend:
+  - MGApi
+  - DecentHolograms
+author: PandaMCBE
+commands:
+  report:
+    description: une commande de report (provisoir)
+    permission: mg.command.report
+    permission-message: 'vous n''avez pas la permissions'
+    aliases:
+      - rp
+  stats:
+    permission: pandafun.commands.stats
+    permission-message: '§cVous n''avez pas la permission requise !'
+    description: Permet la gestion des stats d'un joueur.
+  spawn:
+    description: Ceci est une commande pour se teleporter au spawn du serveur.
+    permission-message: '§cVous n''avez pas la permission requise !'
+  hub:
+    description: Ceci est une commande pour se teleporter au spawn du serveur.
+    permission-message: '§cVous n''avez pas la permission requise !'
+  lobby:
+    description: Ceci est une commande pour se teleporter au spawn du serveur.
+    permission-message: '§cVous n''avez pas la permission requise !'
+  duel:
+    description: permet de gérer les duels sur le serveur.
+  holo:
+    description: Ceci est une commande créer un hologram.
+    permission-message: '§cVous n''avez pas la permission requise !'
+  MGPortals:
+    description: Do cool stuff.
+  permissions:
+    MGPortals.command.BPortals:
+      description: Allowed to access the command /MGPortals.
+      default: op
+    MGPortals.portal.*:
+      description: Access to all portals.
+      default: true
+
+

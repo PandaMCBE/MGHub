@@ -1,0 +1,10 @@
+Jp-enable: true #Enable or Disable the JumpPad function ?
+
+Jp-Velocity-Multiplier: 3 #How fast you generally want to travel ?
+
+Jp-Y-Velocity: 0.5 #How height you want to go (not exact) ?
+
+SaveTask:
+  Enabled: false
+  Interval: 600
+NoPortalPermissionMessage: '&cYou do not have permission to go to the server {destination}.'

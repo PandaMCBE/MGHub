@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MGHub:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MGHub_jar</output-path>
+    <root id="archive" name="MGHub.jar">
+      <element id="module-output" name="MGHub" />
+    </root>
+  </artifact>
+</component>

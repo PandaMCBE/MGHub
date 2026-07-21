@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MGHub:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d5acd647-50cd-44a3-bb9e-ecfcbf74b0d9" name="Changes" comment="Gestion du Lobby v1" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <branch-grouping />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SHOW_RECENT_BRANCHES" value="false" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;PandaMCBE&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/PandaMCBE/MGHub.git&quot;,
+    &quot;accountId&quot;: &quot;d9e2bef8-0696-429d-a703-c26b404ff7b2&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2VnZmKfzNkUy4K4MQecjDyKVg5M" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.MGHub [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MGHub [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MGHub [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MGHub [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MGHub [test].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MGHub [verify].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MGHub package.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Main package.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive/Programmation_java/OneShot&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3689655&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="fr.pandamcbe.mghub" />
+      <recent name="fr.pandamcbe.mghub.commands" />
+      <recent name="fr.pandamcbe.main" />
+      <recent name="fr.pandamcbe.main.events" />
+      <recent name="fr.pandamcbe.main.commands" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="fr.pandamcbe.mghub.listeners.menus.boutique.cosmetiques.cosmemenu" />
+      <recent name="fr.pandamcbe.mghub.listeners.menus.boutique.menushop" />
+      <recent name="fr.pandamcbe.mghub.listeners.menus.mgmenu" />
+      <recent name="fr.pandamcbe.mghub.scoreboards.leaderboard" />
+      <recent name="fr.pandamcbe.mghub.fireworks" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MGHub package" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\pujol\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d5acd647-50cd-44a3-bb9e-ecfcbf74b0d9" name="Changes" comment="" />
+      <created>1695473965798</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695473965798</updated>
+      <workItem from="1695473966208" duration="18760000" />
+      <workItem from="1695541749323" duration="17262000" />
+      <workItem from="1695565983031" duration="16695000" />
+      <workItem from="1695633703475" duration="13255000" />
+      <workItem from="1695748308908" duration="53000" />
+      <workItem from="1695755801070" duration="3000" />
+      <workItem from="1695835110612" duration="1700000" />
+      <workItem from="1695837934394" duration="911000" />
+      <workItem from="1695929442733" duration="351000" />
+      <workItem from="1695970083319" duration="17151000" />
+      <workItem from="1696061462327" duration="2469000" />
+      <workItem from="1696065521619" duration="5292000" />
+      <workItem from="1696077023554" duration="1121000" />
+      <workItem from="1696078160357" duration="8020000" />
+      <workItem from="1696095101570" duration="88000" />
+      <workItem from="1696106622020" duration="15000" />
+      <workItem from="1696165998815" duration="1124000" />
+      <workItem from="1696168990312" duration="10789000" />
+      <workItem from="1696183765920" duration="4348000" />
+      <workItem from="1696239551663" duration="5817000" />
+      <workItem from="1696267530450" duration="4018000" />
+      <workItem from="1696329661835" duration="5808000" />
+      <workItem from="1696418880460" duration="13079000" />
+      <workItem from="1696502107654" duration="1200000" />
+      <workItem from="1696611117455" duration="3484000" />
+      <workItem from="1696671371333" duration="724000" />
+      <workItem from="1696672504226" duration="16000" />
+      <workItem from="1696697769805" duration="11761000" />
+      <workItem from="1696764707091" duration="12686000" />
+      <workItem from="1696845217589" duration="2355000" />
+      <workItem from="1696941735799" duration="11160000" />
+      <workItem from="1696964702896" duration="2069000" />
+      <workItem from="1697047897572" duration="2167000" />
+      <workItem from="1697124212316" duration="48000" />
+      <workItem from="1697124290693" duration="171000" />
+      <workItem from="1697124493121" duration="788000" />
+    </task>
+    <task id="LOCAL-00001" summary="Gestion du Lobby v1">
+      <option name="closed" value="true" />
+      <created>1735853545359</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1735853545359</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Gestion du Lobby v1">
+      <option name="closed" value="true" />
+      <created>1738784412875</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738784412875</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="v1" />
+    <MESSAGE value="Yolo" />
+    <MESSAGE value="v2" />
+    <MESSAGE value="v4" />
+    <MESSAGE value="v5" />
+    <MESSAGE value="Gestion du Lobby v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gestion du Lobby v1" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
