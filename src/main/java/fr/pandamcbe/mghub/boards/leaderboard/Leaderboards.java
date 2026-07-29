@@ -1,5 +1,6 @@
 package fr.pandamcbe.mghub.boards.leaderboard;
 
+import com.google.common.collect.Iterables;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import fr.pandamcbe.mgapi.Main;
@@ -13,7 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class Leaderboards {
 
@@ -23,11 +25,13 @@ public class Leaderboards {
     public Leaderboards(MGHub main) {
         this.createLeaderbords();
             main.getServer().getScheduler().runTaskTimer(main, () -> {
-                if(nextServerName.hasNext()) {
-                    update(nextServerName.next());
-                } else {
-                    nextServerName = Main.getInstance().getProxyMessaging().getServersName().iterator();
-                    update(nextServerName.next());
+                if(Iterables.getFirst(Bukkit.getOnlinePlayers(), null) != null) {
+                    if (nextServerName.hasNext()) {
+                        update(nextServerName.next());
+                    } else {
+                        nextServerName = Main.getInstance().getProxyMessaging().getServersName().iterator();
+                        update(nextServerName.next());
+                    }
                 }
             }, 0, 4800L);
     }
