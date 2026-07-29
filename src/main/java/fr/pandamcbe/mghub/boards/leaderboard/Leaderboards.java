@@ -18,7 +18,7 @@ import java.util.*;
 public class Leaderboards {
 
 
-    private Iterator<String> nextServerName = Main.getInstance().serverNames.iterator();
+    private Iterator<String> nextServerName = Main.getInstance().getProxyMessaging().getServersName().iterator();
 
     public Leaderboards(MGHub main) {
         this.createLeaderbords();
@@ -26,7 +26,7 @@ public class Leaderboards {
                 if(nextServerName.hasNext()) {
                     update(nextServerName.next());
                 } else {
-                    nextServerName = Main.getInstance().serverNames.iterator();
+                    nextServerName = Main.getInstance().getProxyMessaging().getServersName().iterator();
                     update(nextServerName.next());
                 }
             }, 0, 4800L);

@@ -5,10 +5,10 @@ import fr.pandamcbe.mgapi.serverutilapi.scoreboards.ScoreboardManager;
 import fr.pandamcbe.mghub.boards.leaderboard.Leaderboards;
 import fr.pandamcbe.mghub.commands.Commands;
 import fr.pandamcbe.mghub.commands.StatCommand;
-import fr.pandamcbe.mghub.duelcommand.DuelCommand;
-import fr.pandamcbe.mghub.duelcommand.DuelDatasManager;
-import fr.pandamcbe.mghub.duelcommand.DuelMenu;
-import fr.pandamcbe.mghub.duelcommand.Event;
+import fr.pandamcbe.mghub.commands.duelcommand.DuelCommand;
+import fr.pandamcbe.mghub.commands.duelcommand.DuelDatasManager;
+import fr.pandamcbe.mghub.commands.duelcommand.DuelMenu;
+import fr.pandamcbe.mghub.commands.duelcommand.Event;
 import fr.pandamcbe.mghub.fireworks.FireworksManager;
 import fr.pandamcbe.mghub.hublisteners.jumppads.PlayerMoveListener;
 import fr.pandamcbe.mghub.hublisteners.mainevents.ParameterListeners;
@@ -40,8 +40,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,21 +49,11 @@ public final class MGHub extends JavaPlugin {
 
     public LuckPerms luckPerms;
 
-    private ScheduledExecutorService executorMonoThread;
-    private ScheduledExecutorService scheduledExecutorService;
     private ScoreboardManager scoreboardManager;
 
     public DuelDatasManager duelDatasManager;
 
     public Map<UUID, Map<String, Object>> mainMap;
-
-    public ScheduledExecutorService getExecutorMonoThread() {
-        return executorMonoThread;
-    }
-
-    public ScheduledExecutorService getScheduledExecutorService() {
-        return scheduledExecutorService;
-    }
 
     private FireworksManager fireworksManager;
 
@@ -79,7 +67,7 @@ public final class MGHub extends JavaPlugin {
 
     public YamlConfiguration portalsFile;
 
-    public RPbSbUtils subToChannels;
+    public RPbSbUtils rPbSbUtils;
 
     public PortalsConfigFile portalsConfigFile = new PortalsConfigFile();
 
@@ -117,7 +105,7 @@ public final class MGHub extends JavaPlugin {
         getServer().setIdleTimeout(180);
         getServer().setDefaultGameMode(GameMode.ADVENTURE);
 
-        subToChannels = new RPbSbUtils();
+        new RPbSbUtils(this).subChannels();
         duelDatasManager = new DuelDatasManager();
         mainMap = new HashMap<>();
 //
@@ -130,8 +118,6 @@ public final class MGHub extends JavaPlugin {
 
         new AutoMessage().runTaskTimer(this, 0L, 15 * 60 * 20L);
 
-        this.scheduledExecutorService = Executors.newScheduledThreadPool(16);
-        this.executorMonoThread = Executors.newScheduledThreadPool(1);
         this.scoreboardManager = new ScoreboardManager();
 
         portalsConfigFile.portalsOnLoad();
@@ -147,8 +133,6 @@ public final class MGHub extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        this.scoreboardManager.onDisable();
-        subToChannels.sendAccountsToProxy(this);
         long time = System.currentTimeMillis();
         portalsConfigFile.savePortalsData();
         this.logger.log(Level.INFO, "[BungeePortals] Version " + getDescription().getVersion() + " has been disabled. (" + (System.currentTimeMillis() - time) + "ms)");

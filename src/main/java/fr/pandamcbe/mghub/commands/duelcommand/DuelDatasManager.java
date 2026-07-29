@@ -1,4 +1,4 @@
-package fr.pandamcbe.mghub.duelcommand;
+package fr.pandamcbe.mghub.commands.duelcommand;
 
 import org.bukkit.entity.Player;
 

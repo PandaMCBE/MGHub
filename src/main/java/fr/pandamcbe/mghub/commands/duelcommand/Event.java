@@ -1,4 +1,4 @@
-package fr.pandamcbe.mghub.duelcommand;
+package fr.pandamcbe.mghub.commands.duelcommand;
 
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mghub.MGHub;

@@ -7,7 +7,6 @@ import fr.pandamcbe.commons.WornAccount;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
 import fr.pandamcbe.mgapi.core.rediscache.CallAccountsFromRedis;
-import fr.pandamcbe.mgapi.data.management.sql.getandsetdatas.UpdatePlayerData;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
@@ -33,7 +32,6 @@ public class ConfirmMenu implements Listener {
     private static final String confirmOption = "§a§l[Confirmer l'achat]";
     private static final String cancelOption = "§c§l[Annuler l'achat]";
     private final MGHub main = MGHub.getInstance();
-    private final UpdatePlayerData updatePlayerData = Main.getInstance().updatePlayerData;
     private final CallAccountsFromRedis connections = Main.getInstance().connections;
     private final MemAccountsManipulation manipulation = Main.getInstance().manipulation;
 

@@ -1,9 +1,7 @@
 package fr.pandamcbe.mghub.hublisteners.mainevents;
 
-import fr.pandamcbe.commons.FFAKitsAccount;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
-import fr.pandamcbe.mgapi.core.rediscache.CallAccountsFromRedis;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
@@ -38,27 +36,15 @@ public class PlayerJoinListeners implements Listener {
         p.playSound(p.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
         p.setHealth(20.0);
         LoadItems(p);
-        p.setLevel(796); //petite ref à PuceronPanda796
-        memAccountsManipulation.getAndSendAccounts(mgHub.mainMap, uuid, AllNames.PROFILPOJO.getName()+":"+AllNames.FFAKITSPOJO.getName()+":"+AllNames.WORNPOJO.getName()+":"+AllNames.statsPojo(AllNames.CJFFA.getName())+":"+AllNames.statsPojo(AllNames.PFTSHOT.getName()) + ":"+AllNames.statsPojo(AllNames.DUELS.getName()));
-        p.sendMessage("§3§lMG-Land §rNOUVEAU : Backend/PerfectShot\n" + "§l§8§m-----§r§l§5BON JEU !§8§m-----");
+//        p.setLevel(796); //petite ref à PuceronPanda796
+        String[] keys = {AllNames.PROFILPOJO.getName(),AllNames.WORNPOJO.getName()};
+        memAccountsManipulation.getFromRedisSendToMemory(mgHub.mainMap, uuid, keys);
+        p.sendMessage("§3§lMG-Land §rNOUVEAU : MGConstructorAPI\n" + "§l§8§m-----§r§l§5BON JEU !§8§m-----");
         p.sendTitle("§a§lMG§7§l-§6§lLand", "§6§lServeur §d§lPvP§a§lx§d§lMini-jeux");
 
         if(!p.hasPlayedBefore()) {
-//            user.setPrimaryGroup("mgplayer");
-            Bukkit.getScheduler().runTaskAsynchronously(mgHub, ()-> {
-                CallAccountsFromRedis connections = Main.getInstance().connections;
-
-                    FFAKitsAccount kits =(FFAKitsAccount) connections.getAccount(uuid, AllNames.FFAKITSKEY.getName());
-                    if (kits.getGuerrier() == 0) {
-                        kits.setGuerrier(2);
-                        connections.sendAccount(uuid, AllNames.FFAKITSKEY.getName(), kits);
-                    }
-
-            });
-
             Bukkit.broadcastMessage("§b§lNOUVEAU: §f§lSouhaitez tous la bienvenue à " + p.getName() + " §f§lsur §a§lMG§7§l-§6§lLand §7§l(§e§lPandaFun 6.0§7§l) §f§l!");
             mgHub.getFireworksManager().spawnFirework(p.getLocation(), "fw1");
-
         }
         new RefreshPlayerView(uuid);
     }
@@ -78,7 +64,7 @@ public class PlayerJoinListeners implements Listener {
         User user = mgHub.luckPerms.getPlayerAdapter(Player.class).getUser(p);
         event.setQuitMessage(user.getCachedData().getMetaData().getPrefix() + " §r" + p.getName() + " §8§l[§c§l-§8§l]");
         mgHub.getScoreboardManager().onLogout(p);
-        Main.getInstance().redisPbSb.saveDatasToCache(p.getUniqueId(), mgHub.mainMap);
+        Main.getInstance().sendMemToCache.saveDatasToCache(p.getUniqueId(), mgHub.mainMap);
         Main.getInstance().manipulation.deleteAccount(p.getUniqueId(), mgHub.mainMap);
     }
 

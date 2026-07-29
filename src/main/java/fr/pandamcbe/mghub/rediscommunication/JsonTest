@@ -1,0 +1,60 @@
+@Override
+    public void sendAccountsToProxy(){
+        Gson gson = Main.getInstance().gson;
+        Map<String, String> mainMapJson = new HashMap<>();
+        Map<String, JsonObject> subMapJson = new HashMap<>();
+        for(UUID uuid : mgHub.getMainMap().keySet()){
+            Map<String, Object> subMap = mgHub.getMainMap().get(uuid);
+            for (String accountsName : subMap.keySet()) {
+                if(!accountsName.startsWith(AllNames.STATSPOJO.getName())) {
+                    JsonObject JsonAccounts = gson.toJsonTree(subMap.get(accountsName)).getAsJsonObject();
+                    subMapJson.put(accountsName, JsonAccounts);
+                }
+            }
+            String uuidString = uuid.toString();
+            mainMapJson.put(uuidString, gson.toJson(subMapJson));
+        }
+        System.out.println(gson.toJson(new RedisMessage(mainMapJson)));
+        publishMessage(AllNames.PROXY.getName(), gson.toJson(new RedisMessage(mainMapJson)));
+    }
+
+    public void publishGlobalDatas(UUID uuid, String server) throws AccountNotFoundException {
+        Main main = Main.getInstance();
+
+        StatsAccount statsAccount = (StatsAccount) manipulation.getAccount(mgHub.getMainMap(), uuid, AllNames.statsPojo(server));
+        statsAccount.setKills(0);
+        statsAccount.setKillstreaks(0);
+        WornAccount wornAccount = (WornAccount) manipulation.getAccount(mgHub.getMainMap(), uuid, AllNames.WORNPOJO.getName());
+        ProfilAccount profilAccount = (ProfilAccount) manipulation.getAccount(mgHub.getMainMap(), uuid, AllNames.PROFILPOJO.getName());
+
+        Map<String, JsonObject> accounts = new HashMap<>();
+        RedisMessage redisMessage = new RedisMessage(uuid, accounts);
+        JsonObject statsJson = main.gson.toJsonTree(statsAccount).getAsJsonObject();
+        JsonObject wornJson = main.gson.toJsonTree(wornAccount).getAsJsonObject();
+        redisMessage.getAccounts().put(AllNames.statsPojo(server), statsJson);
+        redisMessage.getAccounts().put(AllNames.WORNKEY.getName(), wornJson);
+        AllNames allNames = AllNames.fromName(server);
+
+        switch (allNames) {
+            case PFTSHOT:
+                main.redisPbSb.publishMessage(server, main.gson.toJson(redisMessage));
+                break;
+            case CJFFA:
+                FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) manipulation.getAccount(mgHub.mainMap, uuid, AllNames.FFAKITSPOJO.getName());
+                JsonObject ffakitsJson = main.gson.toJsonTree(ffaKitsAccount).getAsJsonObject();
+                redisMessage.getAccounts().put(AllNames.FFAKITSPOJO.getName(), ffakitsJson);
+                main.redisPbSb.publishMessage(server, main.gson.toJson(redisMessage));
+                break;
+            case DUELS:
+                if(manipulation.getAccount(mgHub.mainMap, uuid, AllNames.DUELPOJO.getName()) != null) {
+                    DuelAccount duelAccount = (DuelAccount) manipulation.getAccount(mgHub.mainMap, uuid, AllNames.DUELPOJO.getName());
+                    JsonObject duelJson = main.gson.toJsonTree(duelAccount).getAsJsonObject();
+                    redisMessage.getAccounts().put(AllNames.DUELPOJO.getName(), duelJson);
+                    main.redisPbSb.publishMessage(server, main.gson.toJson(redisMessage));
+                }
+                break;
+            default:
+                break;
+
+        }
+    }

@@ -1,9 +1,6 @@
 package fr.pandamcbe.mghub.portals;
 
-import fr.pandamcbe.mgapi.data.management.exceptions.AccountNotFoundException;
-import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mghub.MGHub;
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +13,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class EventListener implements Listener {
     private MGHub plugin;
@@ -39,28 +35,6 @@ public class EventListener implements Listener {
             if (!((Boolean)this.statusData.get(playerName)).booleanValue()) {
                 this.statusData.put(playerName, Boolean.valueOf(true));
                 String destination = (String)this.plugin.portalData.get(data);
-//                System.out.println(destination);
-                AllNames allNames = AllNames.fromName(destination);
-//                System.out.println(allNames.getName());
-                UUID uuid = player.getUniqueId();
-                Bukkit.getScheduler().runTaskAsynchronously(plugin, ()-> {
-                    try {
-                        if(allNames != null) {
-                            switch (allNames) {
-                                case PFTSHOT:
-                                    MGHub.getInstance().subToChannels.publishGlobalDatas(uuid, AllNames.PFTSHOT.getName());
-                                    break;
-
-                                case CJFFA:
-                                    MGHub.getInstance().subToChannels.publishGlobalDatas(uuid, AllNames.CJFFA.getName());
-                                    break;
-
-                            }
-                        }
-                    } catch (AccountNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                });
                 ProxyTPRequest(player, destination);
 
             }

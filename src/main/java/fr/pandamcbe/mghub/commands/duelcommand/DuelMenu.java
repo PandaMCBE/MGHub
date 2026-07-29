@@ -1,4 +1,4 @@
-package fr.pandamcbe.mghub.duelcommand;
+package fr.pandamcbe.mghub.commands.duelcommand;
 
 import fr.pandamcbe.commons.DuelAccount;
 import fr.pandamcbe.commons.ProfilAccount;

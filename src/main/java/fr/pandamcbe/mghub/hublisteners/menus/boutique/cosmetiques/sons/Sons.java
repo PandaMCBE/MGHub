@@ -328,7 +328,7 @@ public class Sons implements Listener {
                                              new CosmetiqueMenu().open(p));
                                     }
                                     break;
-                                case "§f§fExplode §8[OTHERS]":
+                                case "§fExplode §8[OTHERS]":
                                     if (profilAccount.getCoins() > 5500 && !getCosme.contains(170)) {
                                         Bukkit.getScheduler().runTask(main, () -> {
                                             subMap.put(invSound, new ItemBuilder(Material.TNT).setName("§fExplode §8[OTHERS]").setLore("§fRareté : §5Épique"));
@@ -373,7 +373,7 @@ public class Sons implements Listener {
                                         Bukkit.getScheduler().runTask(main, ()->
                                             new CosmetiqueMenu().open(p));}
                                     break;
-                                case "§fBurp  §8[OTHERS]":
+                                case "§fBurp §8[OTHERS]":
                                     if (group.getWeight().getAsInt() >= 30 && !getCosme.contains(200)) {
                                         Bukkit.getScheduler().runTask(main, () -> {
                                             subMap.put(invSound, new ItemBuilder(Material.COOKED_BEEF).setName("§fBurp §8[OTHERS]").setLore("§fRareté : §6LÉgendaire"));
