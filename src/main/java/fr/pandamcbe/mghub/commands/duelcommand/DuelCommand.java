@@ -48,7 +48,7 @@ public class DuelCommand implements CommandExecutor {
                         PlayerFirstSender.sendMessage(duelDatasManager.getPrefix() + "Le joueur §a§l " + player.getName() + " §r§la refusé votre demande :(");
                         duelDatasManager.getPlayerKey().remove(PlayerFirstSender);
                         duelDatasManager.getTargetKey().remove(player);
-                        manipulation.deleteAccount(mgHub.mainMap, PlayerFirstSender.getUniqueId(), AllNames.DUELPOJO.getName());
+                        manipulation.deleteAccount(mgHub.getMainMap(), PlayerFirstSender.getUniqueId(), AllNames.DUELPOJO.getName());
                     }
 
                 } else if (Bukkit.getPlayer(targetName) != null) {

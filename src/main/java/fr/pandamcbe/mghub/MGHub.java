@@ -53,7 +53,9 @@ public final class MGHub extends JavaPlugin {
 
     public DuelDatasManager duelDatasManager;
 
-    public Map<UUID, Map<String, Object>> mainMap;
+    private Map<UUID, Map<String, Object>> mainMap;
+
+    private Map<String, Integer> serversPlayerCount;
 
     private FireworksManager fireworksManager;
 
@@ -108,6 +110,7 @@ public final class MGHub extends JavaPlugin {
         new RPbSbUtils(this).subChannels();
         duelDatasManager = new DuelDatasManager();
         mainMap = new HashMap<>();
+        serversPlayerCount = new HashMap<>();
 //
         new Leaderboards(this);
 
@@ -153,6 +156,10 @@ public final class MGHub extends JavaPlugin {
 
     public Map<UUID, Map<String, Object>> getMainMap() {
         return mainMap;
+    }
+
+    public Map<String, Integer> getServersPlayerCount() {
+        return serversPlayerCount;
     }
 
     private void startMetrics() {

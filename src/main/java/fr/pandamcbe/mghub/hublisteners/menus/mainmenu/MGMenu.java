@@ -32,10 +32,8 @@ public class MGMenu implements Listener {
         UUID uuid = p.getUniqueId();
 
         ProxyMessaging proxyMessaging = Main.getInstance().getProxyMessaging();
-        String[] names = {AllNames.PFTSHOT.getName(), AllNames.ONAP.getName(), AllNames.CJFFA.getName(), AllNames.SPLEEG.getName(), AllNames.RTF.getName()};
-        proxyMessaging.askPlayerCount(names);
 
-                ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().mainMap, uuid, AllNames.PROFILPOJO.getName());//
+                ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().getMainMap(), uuid, AllNames.PROFILPOJO.getName());//
 
                 ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 5).setName("").toItemStack();
 

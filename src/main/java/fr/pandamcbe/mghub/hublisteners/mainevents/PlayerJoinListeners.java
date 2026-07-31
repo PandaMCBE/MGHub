@@ -37,7 +37,7 @@ public class PlayerJoinListeners implements Listener {
         p.setHealth(20.0);
         LoadItems(p);
 //        p.setLevel(796); //petite ref à PuceronPanda796
-        String[] keys = {AllNames.PROFILPOJO.getName(),AllNames.WORNPOJO.getName()};
+        String[] keys = {AllNames.PROFILPOJO.getName(),AllNames.WORNPOJO.getName(), AllNames.FFAKITSPOJO.getName()};
         memAccountsManipulation.getFromRedisSendToMemory(mgHub.mainMap, uuid, keys);
         p.sendMessage("§3§lMG-Land §rNOUVEAU : MGConstructorAPI\n" + "§l§8§m-----§r§l§5BON JEU !§8§m-----");
         p.sendTitle("§a§lMG§7§l-§6§lLand", "§6§lServeur §d§lPvP§a§lx§d§lMini-jeux");
