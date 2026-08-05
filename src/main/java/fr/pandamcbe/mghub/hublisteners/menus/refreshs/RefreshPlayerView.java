@@ -2,7 +2,7 @@ package fr.pandamcbe.mghub.hublisteners.menus.refreshs;
 
 import fr.pandamcbe.commons.ProfilAccount;
 import fr.pandamcbe.mgapi.Main;
-import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mghub.MGHub;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -14,7 +14,7 @@ public class RefreshPlayerView {
     public RefreshPlayerView(final UUID uuid) {
 
         Bukkit.getScheduler().runTaskLater(MGHub.getInstance(), () -> {
-            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().mainMap, uuid, AllNames.PROFILPOJO.getName());
+            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
                         for (Player other : Bukkit.getOnlinePlayers()) {
                             Player player = Bukkit.getPlayer(uuid);
                             if (profilAccount.getP_visibility() == 0) {

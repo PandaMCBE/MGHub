@@ -2,7 +2,7 @@ package fr.pandamcbe.mghub.hublisteners.menus.boutique.games.ffa;
 
 import fr.pandamcbe.commons.FFAKitsAccount;
 import fr.pandamcbe.mgapi.Main;
-import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
 import org.bukkit.Bukkit;
@@ -18,7 +18,7 @@ public class FFAItems {
     public void open(Player p) {
         Inventory inv = Bukkit.createInventory(null, 36, invFFA);
 
-        FFAKitsAccount a = (FFAKitsAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().mainMap, p.getUniqueId(), AllNames.FFAKITSPOJO.getName());
+        FFAKitsAccount a = (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().getMainMap(), p.getUniqueId(), AccountType.CJFFAKITS.getKeyPrefix());
 
                 ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 15).toItemStack();
                 for (int i = 0; i < 36; i++) inv.setItem(i, out);

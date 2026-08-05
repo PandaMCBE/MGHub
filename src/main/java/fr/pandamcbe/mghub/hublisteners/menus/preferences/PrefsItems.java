@@ -2,7 +2,7 @@ package fr.pandamcbe.mghub.hublisteners.menus.preferences;
 
 import fr.pandamcbe.commons.ProfilAccount;
 import fr.pandamcbe.mgapi.Main;
-import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
 import org.bukkit.Bukkit;
@@ -20,7 +20,7 @@ public class PrefsItems {
         Inventory inv = Bukkit.createInventory(p, 27, invPrefs);
 
         UUID uuid = p.getUniqueId();
-        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().mainMap, uuid, AllNames.PROFILPOJO.getName());
+        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
 
         ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 3).setName("").toItemStack();
 

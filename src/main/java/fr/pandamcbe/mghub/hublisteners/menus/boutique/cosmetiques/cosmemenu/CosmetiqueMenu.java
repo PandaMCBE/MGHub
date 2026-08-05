@@ -2,7 +2,7 @@ package fr.pandamcbe.mghub.hublisteners.menus.boutique.cosmetiques.cosmemenu;
 
 import fr.pandamcbe.commons.WornAccount;
 import fr.pandamcbe.mgapi.Main;
-import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
 import fr.pandamcbe.mghub.hublisteners.menus.boutique.cosmetiques.sons.SonsItems;
@@ -63,7 +63,7 @@ public class CosmetiqueMenu implements Listener {
     }
     void RemoveAll(UUID uuid){
 
-            WornAccount a = (WornAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().mainMap, uuid, AllNames.WORNPOJO.getName());
+            WornAccount a = (WornAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
             a.setSound_id(0);
         //            a.setMini_id(0);
         //            a.setParticule_id(0);

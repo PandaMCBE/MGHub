@@ -1,5 +1,6 @@
 package fr.pandamcbe.mghub.commands.duelcommand;
 
+import fr.pandamcbe.commons.DuelAccount;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
@@ -48,7 +49,7 @@ public class DuelCommand implements CommandExecutor {
                         PlayerFirstSender.sendMessage(duelDatasManager.getPrefix() + "Le joueur §a§l " + player.getName() + " §r§la refusé votre demande :(");
                         duelDatasManager.getPlayerKey().remove(PlayerFirstSender);
                         duelDatasManager.getTargetKey().remove(player);
-                        manipulation.deleteAccount(mgHub.getMainMap(), PlayerFirstSender.getUniqueId(), AllNames.DUELPOJO.getName());
+                        manipulation.deleteAccount(mgHub.getMainMap(), PlayerFirstSender.getUniqueId(), DuelAccount.class.getName());
                     }
 
                 } else if (Bukkit.getPlayer(targetName) != null) {

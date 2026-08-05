@@ -3,6 +3,7 @@ package fr.pandamcbe.mghub.hublisteners.menus.mainmenu;
 import fr.pandamcbe.commons.ProfilAccount;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.serverutilapi.ProxyMessaging;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.CustomHeadUtil;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
@@ -33,7 +34,7 @@ public class MGMenu implements Listener {
 
         ProxyMessaging proxyMessaging = Main.getInstance().getProxyMessaging();
 
-                ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().getMainMap(), uuid, AllNames.PROFILPOJO.getName());//
+                ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());//
 
                 ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 5).setName("").toItemStack();
 

@@ -20,7 +20,7 @@ import java.util.Objects;
 public class Leaderboards {
 
 
-    private Iterator<String> nextServerName = Main.getInstance().getProxyMessaging().getServersName().iterator();
+    private Iterator<String> nextServerName = Main.getInstance().getProxyMessaging().askServersName().iterator();
 
     public Leaderboards(MGHub main) {
         this.createLeaderbords();
@@ -29,7 +29,7 @@ public class Leaderboards {
                     if (nextServerName.hasNext()) {
                         update(nextServerName.next());
                     } else {
-                        nextServerName = Main.getInstance().getProxyMessaging().getServersName().iterator();
+                        nextServerName = Main.getInstance().getProxyMessaging().askServersName().iterator();
                         update(nextServerName.next());
                     }
                 }

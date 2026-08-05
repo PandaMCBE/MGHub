@@ -55,8 +55,6 @@ public final class MGHub extends JavaPlugin {
 
     private Map<UUID, Map<String, Object>> mainMap;
 
-    private Map<String, Integer> serversPlayerCount;
-
     private FireworksManager fireworksManager;
 
     public final Logger logger = Bukkit.getLogger();
@@ -107,10 +105,9 @@ public final class MGHub extends JavaPlugin {
         getServer().setIdleTimeout(180);
         getServer().setDefaultGameMode(GameMode.ADVENTURE);
 
-        new RPbSbUtils(this).subChannels();
+        new RPbSbUtils().subChannels();
         duelDatasManager = new DuelDatasManager();
         mainMap = new HashMap<>();
-        serversPlayerCount = new HashMap<>();
 //
         new Leaderboards(this);
 
@@ -156,10 +153,6 @@ public final class MGHub extends JavaPlugin {
 
     public Map<UUID, Map<String, Object>> getMainMap() {
         return mainMap;
-    }
-
-    public Map<String, Integer> getServersPlayerCount() {
-        return serversPlayerCount;
     }
 
     private void startMetrics() {

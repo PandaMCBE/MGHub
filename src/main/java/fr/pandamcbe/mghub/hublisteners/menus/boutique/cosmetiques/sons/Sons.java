@@ -4,7 +4,8 @@ import fr.pandamcbe.commons.ProfilAccount;
 import fr.pandamcbe.commons.WornAccount;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
-import fr.pandamcbe.mgapi.core.rediscache.CallAccountsFromRedis;
+import fr.pandamcbe.mgapi.core.rediscache.RedisAccountsManager;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
@@ -30,7 +31,6 @@ public class Sons implements Listener {
     private final MGHub main = MGHub.getInstance();
     MemAccountsManipulation memAM = Main.getInstance().manipulation;
     //Partie sons
-    @SuppressWarnings("unchecked")
     @EventHandler
     public void onClickInventory(InventoryClickEvent event) {
         Player p = (Player) event.getWhoClicked();
@@ -45,12 +45,12 @@ public class Sons implements Listener {
             String NotRightRank = "§b§lMG-Land> §cVous n'avez pas le grade requis pour acheter ceci !";
 
             HashMap<String, ItemBuilder> subMap = new HashMap<>();
-            ProfilAccount profilAccount = (ProfilAccount) memAM.getAccount(MGHub.getInstance().mainMap, uuid, AllNames.PROFILPOJO.getName());
-            WornAccount wearedAccount = (WornAccount) memAM.getAccount(MGHub.getInstance().mainMap, uuid, AllNames.WORNPOJO.getName());
+            ProfilAccount profilAccount = (ProfilAccount) memAM.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
+            WornAccount wearedAccount = (WornAccount) memAM.getShopAccounts(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
             Bukkit.getScheduler().runTaskAsynchronously(main, () -> {
-                CallAccountsFromRedis connections = Main.getInstance().connections;
+                RedisAccountsManager connections = new RedisAccountsManager();
 
-                    Set<Integer> getCosme = (Set<Integer>) connections.getAccount(uuid, AllNames.cosmeKey(AllNames.SOUND_ID.getName()));
+                    Set<Integer> getCosme = (Set<Integer>) connections.getShopAccount(uuid, AccountType.cosmeKey(AllNames.SOUND_ID.getName()));
                 ItemMeta itemMeta = event.getCurrentItem().getItemMeta();
                 if (itemMeta != null) {
                     String displayName = itemMeta.getDisplayName();

@@ -1,6 +1,6 @@
 package fr.pandamcbe.mghub.commands.duelcommand;
 
-import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
+import fr.pandamcbe.commons.DuelAccount;
 import fr.pandamcbe.mghub.MGHub;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,7 +22,7 @@ public class Event implements Listener {
         if(inv.getTitle().equalsIgnoreCase("Choisir un duel")){
             Player target = duelDatasManager.getPlayerKey().get(p);
             Bukkit.getScheduler().runTaskLater(MGHub.getInstance(), ()-> {
-                if (!MGHub.getInstance().mainMap.get(uuid).containsKey(AllNames.DUELPOJO.getName())) {
+                if (!MGHub.getInstance().getMainMap().get(uuid).containsKey(DuelAccount.class.getName())) {
                     if (duelDatasManager.getPlayerKey().containsKey(p) && duelDatasManager.getTargetKey().containsKey(target)) {
                         duelDatasManager.getPlayerKey().remove(p);
                         duelDatasManager.getTargetKey().remove(target);

@@ -2,7 +2,7 @@ package fr.pandamcbe.mghub.hublisteners.menus.preferences;
 
 import fr.pandamcbe.commons.ProfilAccount;
 import fr.pandamcbe.mgapi.Main;
-import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mghub.MGHub;
 import fr.pandamcbe.mghub.hublisteners.menus.mainmenu.MGMenu;
 import fr.pandamcbe.mghub.hublisteners.menus.refreshs.RefreshPlayerView;
@@ -26,7 +26,7 @@ public class PrefsMenu implements Listener {
         if (event.getCurrentItem() == null && event.getAction() != null) return;
         if (event.getView().getTitle().equals(PrefsItems.invPrefs)) {
             event.setCancelled(true);
-            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getAccount(mgHub.mainMap, uuid, AllNames.PROFILPOJO.getName());
+            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(mgHub.getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
             ItemStack updateItem = event.getCurrentItem();
             ItemMeta updateMeta = updateItem.getItemMeta();
             switch (event.getCurrentItem().getType()) {

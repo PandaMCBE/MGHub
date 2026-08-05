@@ -4,6 +4,7 @@ import fr.pandamcbe.commons.FFAKitsAccount;
 import fr.pandamcbe.commons.StatsAccount;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
@@ -41,8 +42,8 @@ public class FFA implements Listener {
             String NotEnoughCoins = "§b§lMG-Land> §cVous n'avez pas assez de MGCoins pour acheter ceci !";
             String NotEnoughElos = "§b§lMG-Land> §cVous n'avez pas assez de MGElos pour acheter ceci !";
 
-                StatsAccount statsAccount = (StatsAccount) memoryProvider.getAccount(main.mainMap, uuid, AllNames.statsPojo(AllNames.CJFFA.getName()));
-                FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) memoryProvider.getAccount(main.mainMap, uuid, AllNames.FFAKITSPOJO.getName());
+                StatsAccount statsAccount = (StatsAccount) memoryProvider.getStatsAccount(main.getMainMap(), uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
+                FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) memoryProvider.getShopAccounts(main.getMainMap(), uuid, AccountType.CJFFAKITS.getKeyPrefix());
                 ItemStack itemStack = event.getCurrentItem();
                 ItemMeta itemMeta = itemStack.getItemMeta();
                 if (itemMeta != null) {

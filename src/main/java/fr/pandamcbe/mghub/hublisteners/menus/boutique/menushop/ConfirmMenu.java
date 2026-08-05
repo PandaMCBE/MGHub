@@ -6,7 +6,8 @@ import fr.pandamcbe.commons.StatsAccount;
 import fr.pandamcbe.commons.WornAccount;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
-import fr.pandamcbe.mgapi.core.rediscache.CallAccountsFromRedis;
+import fr.pandamcbe.mgapi.core.rediscache.RedisAccountsManager;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
@@ -32,7 +33,7 @@ public class ConfirmMenu implements Listener {
     private static final String confirmOption = "§a§l[Confirmer l'achat]";
     private static final String cancelOption = "§c§l[Annuler l'achat]";
     private final MGHub main = MGHub.getInstance();
-    private final CallAccountsFromRedis connections = Main.getInstance().connections;
+    private final RedisAccountsManager connections = new RedisAccountsManager();
     private final MemAccountsManipulation manipulation = Main.getInstance().manipulation;
 
     public static Map<UUID, HashMap<String, ItemBuilder>> confirm= new HashMap<>();
@@ -100,13 +101,13 @@ public class ConfirmMenu implements Listener {
         }
     }
 
-    private void proceedBuyKits(String name, UUID uuid, CallAccountsFromRedis connections) {
+    private void proceedBuyKits(String name, UUID uuid, RedisAccountsManager connections) {
         Bukkit.getScheduler().runTask(main, () -> {
 
-            ProfilAccount coins = (ProfilAccount) Main.getInstance().manipulation.getAccount(main.getMainMap(), uuid, AllNames.PROFILPOJO.getName());
-            StatsAccount statsAccount = (StatsAccount) Main.getInstance().manipulation.getAccount(main.getMainMap(), uuid, AllNames.statsPojo(AllNames.CJFFA.getName()));
-            FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) Main.getInstance().manipulation.getAccount(main.getMainMap(), uuid, AllNames.FFAKITSPOJO.getName());
-            String keys = AllNames.PROFILKEY.getName() + ":" + AllNames.statsKey(AllNames.CJFFA.getName()) + ":" + AllNames.FFAKITSKEY.getName();
+            ProfilAccount coins = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
+            StatsAccount statsAccount = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(main.getMainMap(), uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
+            FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(main.getMainMap(), uuid, AccountType.CJFFAKITS.getKeyPrefix());
+            String[] keys = {AccountType.PROFIL.getKeyPrefix(), AccountType.statsKey(AllNames.CJFFA.getName()), AccountType.CJFFAKITS.getKeyPrefix()};
             Player p = Bukkit.getPlayer(uuid);
             switch (name) {
                 case "§8■ §bArcher":
@@ -141,12 +142,12 @@ public class ConfirmMenu implements Listener {
 
     }
     @SuppressWarnings("unchecked")
-    private void proceedBuySound(String name, UUID uuid, CallAccountsFromRedis connections) {
-        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getAccount(main.getMainMap(), uuid, AllNames.PROFILPOJO.getName());
+    private void proceedBuySound(String name, UUID uuid, RedisAccountsManager connections) {
+        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
         Player p = Bukkit.getPlayer(uuid);
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), ()-> {
 
-            Set<Integer> getCosme = (Set<Integer>) connections.getAccount(uuid, AllNames.cosmeKey(AllNames.SOUND_ID.getName()));
+            Set<Integer> getCosme = (Set<Integer>) connections.getProfilAccount(uuid, AccountType.cosmeKey(AllNames.SOUND_ID.getName()));
 
             switch (name) {
                 case "§fHat §8[NOTEBLOCK]":
@@ -285,7 +286,7 @@ public class ConfirmMenu implements Listener {
                     break;
                 case "§cDéséquiper":
                     Bukkit.getScheduler().runTask(main, ()-> {
-                        WornAccount wearedAccount = (WornAccount) manipulation.getAccount(MGHub.getInstance().getMainMap(), uuid, AllNames.WORNPOJO.getName());
+                        WornAccount wearedAccount = (WornAccount) manipulation.getShopAccounts(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
                         wearedAccount.setSound_id(1);
                         p.sendMessage("§b§lMG-Land> §aTous les cosmétiques de la catégories des sons ont été retiré avec succès !");
                     });
@@ -294,7 +295,7 @@ public class ConfirmMenu implements Listener {
                     break;
             }
             new SonsItems().open(p);
-            connections.sendAccount(uuid, AllNames.PROFILKEY.getName(), profilAccount);
+            connections.sendAccountToRedisType(uuid, AccountType.PROFIL.getKeyPrefix(), profilAccount);
 
         });
 

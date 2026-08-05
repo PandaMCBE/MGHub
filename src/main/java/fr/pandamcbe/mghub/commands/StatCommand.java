@@ -17,7 +17,7 @@ public class StatCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        new getPlayerStatsCmd(sender, cmd, args, MGHub.getInstance().mainMap, player);
+        new getPlayerStatsCmd(sender, cmd, args, MGHub.getInstance().getMainMap(), player);
 
         return true;
     }

@@ -2,7 +2,8 @@ package fr.pandamcbe.mghub.hublisteners.menus.boutique.cosmetiques.sons;
 
 import fr.pandamcbe.commons.WornAccount;
 import fr.pandamcbe.mgapi.Main;
-import fr.pandamcbe.mgapi.core.rediscache.CallAccountsFromRedis;
+import fr.pandamcbe.mgapi.core.rediscache.RedisAccountsManager;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mgapi.serverutilapi.utils.items.ItemBuilder;
 import fr.pandamcbe.mghub.MGHub;
@@ -23,11 +24,11 @@ public class SonsItems {
         UUID uuid = p.getUniqueId();
         Inventory inv = Bukkit.createInventory(p, 45, invSound);
         Bukkit.getScheduler().runTaskAsynchronously(MGHub.getInstance(), () -> {
-            CallAccountsFromRedis connections = Main.getInstance().connections;
+            RedisAccountsManager connections = new RedisAccountsManager();
 
-                Set<Integer> o = (Set<Integer>) connections.getAccount(uuid, AllNames.cosmeKey(AllNames.SOUND_ID.getName()));
+                Set<Integer> o = (Set<Integer>) connections.getShopAccount(uuid, AccountType.cosmeKey(AllNames.SOUND_ID.getName()));
                 Bukkit.getScheduler().runTask(MGHub.getInstance(), () -> {
-                    WornAccount wearedAccount = (WornAccount) Main.getInstance().manipulation.getAccount(MGHub.getInstance().mainMap, uuid, AllNames.WORNPOJO.getName());
+                    WornAccount wearedAccount = (WornAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
                     ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 15).toItemStack();
 
                     for (int i = 0; i < 10; i++) inv.setItem(i, out);
