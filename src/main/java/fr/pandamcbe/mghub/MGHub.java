@@ -1,6 +1,7 @@
 package fr.pandamcbe.mghub;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import fr.pandamcbe.mgapi.serverutilapi.NetworkState;
 import fr.pandamcbe.mgapi.serverutilapi.scoreboards.ScoreboardManager;
 import fr.pandamcbe.mghub.boards.leaderboard.Leaderboards;
 import fr.pandamcbe.mghub.commands.Commands;
@@ -55,6 +56,8 @@ public final class MGHub extends JavaPlugin {
 
     private Map<UUID, Map<String, Object>> mainMap;
 
+    public NetworkState networkState;
+
     private FireworksManager fireworksManager;
 
     public final Logger logger = Bukkit.getLogger();
@@ -67,7 +70,6 @@ public final class MGHub extends JavaPlugin {
 
     public YamlConfiguration portalsFile;
 
-    public RPbSbUtils rPbSbUtils;
 
     public PortalsConfigFile portalsConfigFile = new PortalsConfigFile();
 
@@ -108,6 +110,7 @@ public final class MGHub extends JavaPlugin {
         new RPbSbUtils().subChannels();
         duelDatasManager = new DuelDatasManager();
         mainMap = new HashMap<>();
+        networkState = new NetworkState();
 //
         new Leaderboards(this);
 
@@ -153,6 +156,10 @@ public final class MGHub extends JavaPlugin {
 
     public Map<UUID, Map<String, Object>> getMainMap() {
         return mainMap;
+    }
+
+    public NetworkState getNetworkState() {
+        return networkState;
     }
 
     private void startMetrics() {
