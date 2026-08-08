@@ -15,7 +15,7 @@ public class RPbSbUtils extends RedisAccountsUtils {
 
     @Override
     public void subChannels() {
-        String[] channels = {AllNames.LOBBY.getName(), AllNames.PROXY.getName()};
+        String[] channels = {AllNames.LOBBY.getName(), AllNames.NETWORKSTATE.getName()};
         subCore(channels);
     }
 
