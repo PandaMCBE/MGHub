@@ -70,7 +70,6 @@ public final class MGHub extends JavaPlugin {
 
     public YamlConfiguration portalsFile;
 
-
     public PortalsConfigFile portalsConfigFile = new PortalsConfigFile();
 
     @Override

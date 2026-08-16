@@ -24,7 +24,7 @@ public class RPbSbUtils extends RedisAccountsUtils {
         AllNames allNames = AllNames.fromName(channelName);
         if (allNames != null) {
             switch (allNames) {
-                case PROXY:
+                case NETWORKSTATE:
                     Type type = new TypeToken<NetworkState>() {}.getType();
                     MGHub.getInstance().networkState = gson.fromJson(message, type);
                     break;
