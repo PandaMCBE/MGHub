@@ -48,7 +48,7 @@ public class DuelMenu implements Listener {
             final User user1 = main.luckPerms.getPlayerAdapter(Player.class).getUser(p);
             final User user2 = main.luckPerms.getPlayerAdapter(Player.class).getUser(target);
             UUID uuid = target.getUniqueId();
-            final ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
+            final ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
             MemAccountsManipulation memoryProvider = Main.getInstance().manipulation;
             DuelAccount duelAccount = new DuelAccount(p.getUniqueId(), target.getUniqueId(), "");
             if (profilAccount.getDuel_allow() == 1) {
@@ -57,25 +57,25 @@ public class DuelMenu implements Listener {
                         duelAccount.setGamemode(AllNames.BUILDUHC.getName());
                         p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en BuildUHC à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
                         target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE BUILDUHC !");
-                        memoryProvider.sendAccountToMemory(main.getMainMap(), p.getUniqueId(), duelAccount, DuelPojo);
+                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
                         break;
                     case FISHING_ROD:
                         duelAccount.setGamemode(AllNames.SG.getName());
                         p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en SG à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
                         target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE SG !");
-                        memoryProvider.sendAccountToMemory(main.getMainMap(), p.getUniqueId(), duelAccount, DuelPojo);
+                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
                         break;
                     case SLIME_BALL:
                         duelAccount.setGamemode(AllNames.SUMO.getName());
                         p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en SUMO à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
                         target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE SUMO !");
-                        memoryProvider.sendAccountToMemory(main.getMainMap(), p.getUniqueId(), duelAccount, DuelPojo);
+                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
                         break;
                     case SKULL_ITEM:
                         duelAccount.setGamemode(AllNames.PVBOT.getName());
                         p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en PvBot à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
                         target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE PVBOT !");
-                        memoryProvider.sendAccountToMemory(main.getMainMap(), p.getUniqueId(), duelAccount, DuelPojo);
+                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
                         break;
                     case SANDSTONE:
                         duelAccount.setGamemode(AllNames.MLGRUSH.getName());
@@ -86,8 +86,8 @@ public class DuelMenu implements Listener {
                         break;
 
                 }
-                memoryProvider.sendAccountToMemory(main.getMainMap(), p.getUniqueId(), duelAccount, DuelPojo);
-                memoryProvider.sendAccountToMemory(main.getMainMap(), target.getUniqueId(), duelAccount, DuelPojo);
+                memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
+                memoryProvider.sendAccountToMemory(main.mainMap, target.getUniqueId(), duelAccount, DuelPojo);
                 p.closeInventory();
 
             } else {

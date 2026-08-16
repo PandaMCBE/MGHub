@@ -25,9 +25,9 @@ public class StatsMenu implements Listener {
         UUID uuid = p.getUniqueId();
         Inventory inv = Bukkit.createInventory(p, 36, invMain);
 
-        StatsAccount statsCJFFA = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
-        StatsAccount statsPerfectShot = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.statsKey(AllNames.PFTSHOT.getName()));
-        StatsAccount statsDuel = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.statsKey(AllNames.DUELS.getName()));
+        StatsAccount statsCJFFA = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().mainMap, uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
+        StatsAccount statsPerfectShot = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().mainMap, uuid, AccountType.statsKey(AllNames.PFTSHOT.getName()));
+        StatsAccount statsDuel = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().mainMap, uuid, AccountType.statsKey(AllNames.DUELS.getName()));
         //                String base64Texture = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmYxNTlhMWNiZTE3M2Q5MjczOTJmYTY1ZmNmZTc4NTUzZDgxYWE1ZGMyOTQ5NWI5ZmJiYWRlMzYyZjhiZjkifX19";
 //                ItemStack customHead = CustomHeadUtil.createCustomHead(base64Texture);
 

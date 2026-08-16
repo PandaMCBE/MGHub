@@ -26,7 +26,7 @@ public class PrefsMenu implements Listener {
         if (event.getCurrentItem() == null && event.getAction() != null) return;
         if (event.getView().getTitle().equals(PrefsItems.invPrefs)) {
             event.setCancelled(true);
-            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(mgHub.getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
+            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(mgHub.mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
             ItemStack updateItem = event.getCurrentItem();
             ItemMeta updateMeta = updateItem.getItemMeta();
             switch (event.getCurrentItem().getType()) {

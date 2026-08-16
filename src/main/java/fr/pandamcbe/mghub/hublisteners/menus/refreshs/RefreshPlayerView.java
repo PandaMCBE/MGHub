@@ -14,7 +14,7 @@ public class RefreshPlayerView {
     public RefreshPlayerView(final UUID uuid) {
 
         Bukkit.getScheduler().runTaskLater(MGHub.getInstance(), () -> {
-            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
+            ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
                         for (Player other : Bukkit.getOnlinePlayers()) {
                             Player player = Bukkit.getPlayer(uuid);
                             if (profilAccount.getP_visibility() == 0) {

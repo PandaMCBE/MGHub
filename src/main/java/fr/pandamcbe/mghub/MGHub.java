@@ -54,7 +54,7 @@ public final class MGHub extends JavaPlugin {
 
     public DuelDatasManager duelDatasManager;
 
-    private Map<UUID, Map<String, Object>> mainMap;
+    public Map<UUID, Map<String, Object>> mainMap;
 
     public NetworkState networkState;
 
@@ -151,10 +151,6 @@ public final class MGHub extends JavaPlugin {
 
     public FireworksManager getFireworksManager() {
         return fireworksManager;
-    }
-
-    public Map<UUID, Map<String, Object>> getMainMap() {
-        return mainMap;
     }
 
     public NetworkState getNetworkState() {

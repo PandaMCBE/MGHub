@@ -20,7 +20,7 @@ public class PrefsItems {
         Inventory inv = Bukkit.createInventory(p, 27, invPrefs);
 
         UUID uuid = p.getUniqueId();
-        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
+        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
 
         ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 3).setName("").toItemStack();
 

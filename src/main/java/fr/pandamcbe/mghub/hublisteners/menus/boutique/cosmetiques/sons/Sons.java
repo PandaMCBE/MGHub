@@ -45,8 +45,8 @@ public class Sons implements Listener {
             String NotRightRank = "§b§lMG-Land> §cVous n'avez pas le grade requis pour acheter ceci !";
 
             HashMap<String, ItemBuilder> subMap = new HashMap<>();
-            ProfilAccount profilAccount = (ProfilAccount) memAM.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
-            WornAccount wearedAccount = (WornAccount) memAM.getShopAccounts(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
+            ProfilAccount profilAccount = (ProfilAccount) memAM.getProfilAccount(MGHub.getInstance().mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
+            WornAccount wearedAccount = (WornAccount) memAM.getShopAccounts(MGHub.getInstance().mainMap, uuid, AccountType.COSMEWORN.getKeyPrefix());
             Bukkit.getScheduler().runTaskAsynchronously(main, () -> {
                 RedisAccountsManager connections = new RedisAccountsManager();
 

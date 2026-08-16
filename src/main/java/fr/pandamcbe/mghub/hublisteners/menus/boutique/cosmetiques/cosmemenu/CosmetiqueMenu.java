@@ -63,7 +63,7 @@ public class CosmetiqueMenu implements Listener {
     }
     void RemoveAll(UUID uuid){
 
-            WornAccount a = (WornAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
+            WornAccount a = (WornAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().mainMap, uuid, AccountType.COSMEWORN.getKeyPrefix());
             a.setSound_id(0);
         //            a.setMini_id(0);
         //            a.setParticule_id(0);

@@ -22,7 +22,7 @@ public class Event implements Listener {
         if(inv.getTitle().equalsIgnoreCase("Choisir un duel")){
             Player target = duelDatasManager.getPlayerKey().get(p);
             Bukkit.getScheduler().runTaskLater(MGHub.getInstance(), ()-> {
-                if (!MGHub.getInstance().getMainMap().get(uuid).containsKey(DuelAccount.class.getName())) {
+                if (!MGHub.getInstance().mainMap.get(uuid).containsKey(DuelAccount.class.getName())) {
                     if (duelDatasManager.getPlayerKey().containsKey(p) && duelDatasManager.getTargetKey().containsKey(target)) {
                         duelDatasManager.getPlayerKey().remove(p);
                         duelDatasManager.getTargetKey().remove(target);

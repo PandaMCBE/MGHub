@@ -28,7 +28,7 @@ public class SonsItems {
 
                 Set<Integer> o = (Set<Integer>) connections.getShopAccount(uuid, AccountType.cosmeKey(AllNames.SOUND_ID.getName()));
                 Bukkit.getScheduler().runTask(MGHub.getInstance(), () -> {
-                    WornAccount wearedAccount = (WornAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
+                    WornAccount wearedAccount = (WornAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().mainMap, uuid, AccountType.COSMEWORN.getKeyPrefix());
                     ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 15).toItemStack();
 
                     for (int i = 0; i < 10; i++) inv.setItem(i, out);

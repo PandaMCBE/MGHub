@@ -104,9 +104,9 @@ public class ConfirmMenu implements Listener {
     private void proceedBuyKits(String name, UUID uuid, RedisAccountsManager connections) {
         Bukkit.getScheduler().runTask(main, () -> {
 
-            ProfilAccount coins = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
-            StatsAccount statsAccount = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(main.getMainMap(), uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
-            FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(main.getMainMap(), uuid, AccountType.CJFFAKITS.getKeyPrefix());
+            ProfilAccount coins = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
+            StatsAccount statsAccount = (StatsAccount) Main.getInstance().manipulation.getStatsAccount(main.mainMap, uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
+            FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(main.mainMap, uuid, AccountType.CJFFAKITS.getKeyPrefix());
             String[] keys = {AccountType.PROFIL.getKeyPrefix(), AccountType.statsKey(AllNames.CJFFA.getName()), AccountType.CJFFAKITS.getKeyPrefix()};
             Player p = Bukkit.getPlayer(uuid);
             switch (name) {
@@ -143,7 +143,7 @@ public class ConfirmMenu implements Listener {
     }
     @SuppressWarnings("unchecked")
     private void proceedBuySound(String name, UUID uuid, RedisAccountsManager connections) {
-        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.getMainMap(), uuid, AccountType.PROFIL.getKeyPrefix());
+        ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(main.mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
         Player p = Bukkit.getPlayer(uuid);
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), ()-> {
 
@@ -286,7 +286,7 @@ public class ConfirmMenu implements Listener {
                     break;
                 case "§cDéséquiper":
                     Bukkit.getScheduler().runTask(main, ()-> {
-                        WornAccount wearedAccount = (WornAccount) manipulation.getShopAccounts(MGHub.getInstance().getMainMap(), uuid, AccountType.COSMEWORN.getKeyPrefix());
+                        WornAccount wearedAccount = (WornAccount) manipulation.getShopAccounts(MGHub.getInstance().mainMap, uuid, AccountType.COSMEWORN.getKeyPrefix());
                         wearedAccount.setSound_id(1);
                         p.sendMessage("§b§lMG-Land> §aTous les cosmétiques de la catégories des sons ont été retiré avec succès !");
                     });
