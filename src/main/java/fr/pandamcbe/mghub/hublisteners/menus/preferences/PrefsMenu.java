@@ -2,6 +2,7 @@ package fr.pandamcbe.mghub.hublisteners.menus.preferences;
 
 import fr.pandamcbe.commons.ProfilAccount;
 import fr.pandamcbe.mgapi.Main;
+import fr.pandamcbe.mgapi.core.localmemory.DirtyManager;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mghub.MGHub;
 import fr.pandamcbe.mghub.hublisteners.menus.mainmenu.MGMenu;
@@ -18,14 +19,16 @@ import java.util.UUID;
 public class PrefsMenu implements Listener {
 
     private final MGHub mgHub = MGHub.getInstance();
-
+    private final DirtyManager dirtyManager = new DirtyManager();
     @EventHandler
     public void onClickInventory(InventoryClickEvent event) {
+
         Player p = (Player) event.getWhoClicked();
         UUID uuid = p.getUniqueId();
         if (event.getCurrentItem() == null && event.getAction() != null) return;
         if (event.getView().getTitle().equals(PrefsItems.invPrefs)) {
             event.setCancelled(true);
+
             ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(mgHub.mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
             ItemStack updateItem = event.getCurrentItem();
             ItemMeta updateMeta = updateItem.getItemMeta();
@@ -108,6 +111,7 @@ public class PrefsMenu implements Listener {
                 default:
                     break;
             }
+            dirtyManager.markDirty(uuid, AccountType.PROFIL.getKeyPrefix(), profilAccount);
         }
     }
 

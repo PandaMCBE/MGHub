@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class Leaderboards {
 
-    private Iterator<String> nextServerName = Main.getInstance().getProxyMessaging().askServersName().iterator();
+    private Iterator<String> nextServerName = MGHub.getInstance().getNetworkState().getServerNames().iterator();
 
     public Leaderboards(MGHub main) {
         this.createLeaderbords();
