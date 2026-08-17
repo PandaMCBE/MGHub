@@ -12,16 +12,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.concurrent.CompletableFuture;
-
 public class FFAItems {
     public static final String invFFA = "§8§l⨠ Kits CJFFA ";
 
     public void open(Player p) {
 
 //        FFAKitsAccount a = (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().mainMap, p.getUniqueId(), AccountType.CJFFAKITS.getKeyPrefix());
-        CompletableFuture.supplyAsync(()-> (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().mainMap, p.getUniqueId(), AccountType.CJFFAKITS.getKeyPrefix())).thenAccept(
-        a-> Bukkit.getScheduler().runTask(MGHub.getInstance(), ()-> {
+//        CompletableFuture.supplyAsync(()-> (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().mainMap, p.getUniqueId(), AccountType.CJFFAKITS.getKeyPrefix())).thenAccept(
+//        a-> Bukkit.getScheduler().runTask(MGHub.getInstance(), ()-> {
+
+            FFAKitsAccount a = (FFAKitsAccount) Main.getInstance().manipulation.getShopAccounts(MGHub.getInstance().mainMap, p.getUniqueId(), AccountType.CJFFAKITS.getKeyPrefix());
             Inventory inv = Bukkit.createInventory(null, 36, invFFA);
 
             ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 15).toItemStack();
@@ -71,7 +71,7 @@ public class FFAItems {
 
 
 
-            }));
+//            }));
     }
 
 }

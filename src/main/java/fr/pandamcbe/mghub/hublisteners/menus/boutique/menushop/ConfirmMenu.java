@@ -154,14 +154,14 @@ public class ConfirmMenu implements Listener {
                     getCosme.add(10);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 1500);
-                        p.sendMessage(youOwnItWithCoins(name, 1500));
+                        p.sendMessage(youBuyItWithCoins(name, 1500));
                     });
 //                connections.sendWearedToRedis(a);
                     break;
                 case "§fBd §8[NOTEBLOCK]":
                     getCosme.add(20);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
 //                connections.sendWearedToRedis(a);
                     break;
@@ -169,13 +169,13 @@ public class ConfirmMenu implements Listener {
                     getCosme.add(30);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 2000);
-                        p.sendMessage(youOwnItWithCoins(name, 2000));
+                        p.sendMessage(youBuyItWithCoins(name, 2000));
                     });
                     break;
                 case "§fPling §8[NOTEBLOCK]":
                     getCosme.add(40);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
 //                        Main.getInstance().gameMechanics.changeMenu(p, open(p));
                     });
                     break;
@@ -183,105 +183,105 @@ public class ConfirmMenu implements Listener {
                     getCosme.add(50);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 1000);
-                        p.sendMessage(youOwnItWithCoins(name, 1000));
+                        p.sendMessage(youBuyItWithCoins(name, 1000));
                     });
                     break;
                 case "§fSnare §8[NOTEBLOCK]":
                     getCosme.add(60);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
                     break;
                 case "§fWolf's Death §8[MOB]":
                     getCosme.add(70);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
                     break;
                 case "§fSkeleton's Death §8[MOB]":
                     getCosme.add(80);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 2500);
-                        p.sendMessage(youOwnItWithCoins(name, 2500));
+                        p.sendMessage(youBuyItWithCoins(name, 2500));
                     });
                     break;
                 case "§fVillager's Death §8[MOB]":
                     getCosme.add(90);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 3000);
-                        p.sendMessage(youOwnItWithCoins(name, 3000));
+                        p.sendMessage(youBuyItWithCoins(name, 3000));
                     });
                     break;
                 case "§fBat's Death §8[MOB]":
                     getCosme.add(100);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 3500);
-                        p.sendMessage(youOwnItWithCoins(name, 3500));
+                        p.sendMessage(youBuyItWithCoins(name, 3500));
                     });
                     break;
                 case "§fBlaze's Death §8[MOB]":
                     getCosme.add(110);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 4000);
-                        p.sendMessage(youOwnItWithCoins(name, 4000));
+                        p.sendMessage(youBuyItWithCoins(name, 4000));
                     });
                     break;
                 case "§fWither's Death §8[MOB]":
                     getCosme.add(120);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
                     break;
                 case "§fEnderman's Death §8[MOB]":
                     getCosme.add(130);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
                     break;
                 case "§fClick §8[OTHERS]":
                     getCosme.add(140);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 4500);
-                        p.sendMessage(youOwnItWithCoins(name, 4500));
+                        p.sendMessage(youBuyItWithCoins(name, 4500));
                     });
                     break;
                 case "§fGlass §8[OTHERS]":
                     getCosme.add(150);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 5000);
-                        p.sendMessage(youOwnItWithCoins(name, 5000));
+                        p.sendMessage(youBuyItWithCoins(name, 5000));
                     });
                     break;
                 case "§fLevel Up §8[OTHERS]":
                     getCosme.add(160);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
                     break;
                 case "§f§fExplode §8[OTHERS]":
                     getCosme.add(170);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 5500);
-                        p.sendMessage(youOwnItWithCoins(name, 5500));
+                        p.sendMessage(youBuyItWithCoins(name, 5500));
                     });
                     break;
                 case "§fHit §8[OTHERS]":
                     getCosme.add(180);
                     Bukkit.getScheduler().runTask(main, () -> {
                         profilAccount.setCoins(profilAccount.getCoins() - 6000);
-                        p.sendMessage(youOwnItWithCoins(name, 6000));
+                        p.sendMessage(youBuyItWithCoins(name, 6000));
                     });
                     break;
                 case "§fFirework §8[OTHERS]":
                     getCosme.add(190);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
                     break;
                 case "§fBurp  §8[OTHERS]":
                     getCosme.add(200);
                     Bukkit.getScheduler().runTask(main, () -> {
-                        p.sendMessage(youOwnItWithRank(name));
+                        p.sendMessage(youBuyItWithRank(name));
                     });
                     break;
                 case "§cDéséquiper":
@@ -301,11 +301,11 @@ public class ConfirmMenu implements Listener {
 
     }
 
-    private String youOwnItWithCoins(String name, int price){
+    private String youBuyItWithCoins(String name, int price){
         return "§b§lMG-Land> §aLe cosmétique §6" + name + " §aa été acheté avec succès ! §c-"+price+",\n§eVous pouvez à présent aller l'équiper, §6§nc'est votre choix.";
     }
 
-    private String youOwnItWithRank(String name){
+    private String youBuyItWithRank(String name){
         return "§b§lMG-Land> §aLe cosmétique §6" + name + " §aa été acheté avec succès !,\n§eVous pouvez à présent aller l'équiper, §6§nc'est votre choix.";
 
     }

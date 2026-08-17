@@ -1,6 +1,7 @@
 package fr.pandamcbe.mghub.hublisteners.mainevents;
 
 import fr.pandamcbe.mgapi.Main;
+import fr.pandamcbe.mgapi.core.localmemory.DirtyManager;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
@@ -22,7 +23,7 @@ public class PlayerJoinListeners implements Listener {
 
     private final MGHub mgHub = MGHub.getInstance();
     private final MemAccountsManipulation memAccountsManipulation = Main.getInstance().manipulation;
-
+    private final DirtyManager dirtyManager = new DirtyManager();
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
@@ -69,7 +70,7 @@ public class PlayerJoinListeners implements Listener {
         User user = mgHub.luckPerms.getPlayerAdapter(Player.class).getUser(p);
         event.setQuitMessage(user.getCachedData().getMetaData().getPrefix() + " §r" + p.getName() + " §8§l[§c§l-§8§l]");
         mgHub.getScoreboardManager().onLogout(p);
-        Main.getInstance().sendMemToCache.saveDatasToCache(p.getUniqueId(), mgHub.mainMap);
+        dirtyManager.forceSave(mgHub.mainMap, p.getUniqueId());
         Main.getInstance().manipulation.deleteAccount(p.getUniqueId(), mgHub.mainMap);
     }
 

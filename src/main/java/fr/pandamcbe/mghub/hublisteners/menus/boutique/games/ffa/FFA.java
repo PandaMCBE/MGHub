@@ -1,8 +1,10 @@
 package fr.pandamcbe.mghub.hublisteners.menus.boutique.games.ffa;
 
 import fr.pandamcbe.commons.FFAKitsAccount;
+import fr.pandamcbe.commons.ProfilAccount;
 import fr.pandamcbe.commons.StatsAccount;
 import fr.pandamcbe.mgapi.Main;
+import fr.pandamcbe.mgapi.core.localmemory.DirtyManager;
 import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
@@ -27,6 +29,7 @@ import static fr.pandamcbe.mghub.hublisteners.menus.boutique.games.ffa.FFAItems.
 public class FFA implements Listener {
 
     private final MGHub main = MGHub.getInstance();
+    private final DirtyManager dirtyManager = new DirtyManager();
     MemAccountsManipulation memoryProvider = Main.getInstance().manipulation;
     //Partie sons
     @EventHandler
@@ -43,7 +46,7 @@ public class FFA implements Listener {
             String NotEnoughElos = "§b§lMG-Land> §cVous n'avez pas assez de MGElos pour acheter ceci !";
 
             FFAKitsAccount ffaKitsAccount = (FFAKitsAccount) memoryProvider.getShopAccounts(main.mainMap, uuid, AccountType.CJFFAKITS.getKeyPrefix());
-            StatsAccount statsAccount = (StatsAccount) memoryProvider.getStatsAccount(main.mainMap, uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
+            ProfilAccount profilAccount = (ProfilAccount) memoryProvider.getProfilAccount(main.mainMap, uuid, AccountType.PROFIL.getKeyPrefix());
                         ItemStack itemStack = event.getCurrentItem();
                         ItemMeta itemMeta = itemStack.getItemMeta();
                         if (itemMeta != null) {
@@ -64,12 +67,12 @@ public class FFA implements Listener {
                                         itemStack.setItemMeta(itemMeta);
                                         break;
                                     case "§8■ §bArcher":
-                                        if (statsAccount.getCoins() > 1500 && ffaKitsAccount.getArcher() == 0) {
+                                        if (profilAccount.getCoins() > 1500 && ffaKitsAccount.getArcher() == 0) {
                                             // crée la map si elle n'existe pas.put(itemName, item);
                                             subMap.put(invFFA, new ItemBuilder(Material.BOW).setName("§8■ §bArcher").setLore("§7Équipements", "", "§8- §b1§7x §fArc", "§8- §b2§7x §fFlèches", "§8- §b2§7x §fPommes dorées", "§8- §b1§7x §fCasque en fer", "§8- §b1§7x §fPlastron en fer", "§8- §b1§7x §fJambières en mailles", "§8- §b1§7x §fBottes en or"));
                                             ConfirmMenu.confirm.put(p.getUniqueId(), subMap);
                                             new ConfirmMenu().open(p);
-                                        } else if (statsAccount.getCoins() < 1500 && ffaKitsAccount.getArcher() == 0) {
+                                        } else if (profilAccount.getCoins() < 1500 && ffaKitsAccount.getArcher() == 0) {
                                             p.sendMessage(NotEnoughCoins);
                                         }
                                         if (ffaKitsAccount.getArcher() == 2) {
@@ -82,11 +85,11 @@ public class FFA implements Listener {
                                         itemStack.setItemMeta(itemMeta);
                                         break;
                                     case "§8■ §bAssassin":
-                                        if (statsAccount.getCoins() > 2000 && ffaKitsAccount.getAssassin() == 0) {
+                                        if (profilAccount.getCoins() > 2000 && ffaKitsAccount.getAssassin() == 0) {
                                             subMap.put(invFFA, new ItemBuilder(Material.BREWING_STAND_ITEM).setName("§8■ §bAssassin").setLore("§7Équipements", "", "§8- §b2§7x §fPotion de poison 20s", "§8- §b2§7x §fPotion d'invisibilité 20s", "§8- §b2§7x §fPommes dorées", "§8- §b1§7x §fCasque en fer", "§8- §b1§7x §fPlastron en diamant", "§8- §b1§7x §fJambières en fer", "§8- §b1§7x §fBottes en or"));
                                             ConfirmMenu.confirm.put(p.getUniqueId(), subMap);
                                             new ConfirmMenu().open(p);
-                                        } else if (statsAccount.getCoins() < 2000 && ffaKitsAccount.getAssassin() == 0) {
+                                        } else if (profilAccount.getCoins() < 2000 && ffaKitsAccount.getAssassin() == 0) {
                                             p.sendMessage(NotEnoughCoins);
                                         }
 
@@ -100,11 +103,11 @@ public class FFA implements Listener {
                                         itemStack.setItemMeta(itemMeta);
                                         break;
                                     case "§8■ §bPuncher":
-                                        if (statsAccount.getCoins() > 2500 && ffaKitsAccount.getPuncher() == 0) {
+                                        if (profilAccount.getCoins() > 2500 && ffaKitsAccount.getPuncher() == 0) {
                                             subMap.put(invFFA, new ItemBuilder(Material.RAW_FISH).setName("§8■ §bPuncher").setLore("§7Équipements", "", "§8- §b1§7x §fBâton KnockBack IV", "§8- §b1§7x §fCanne à pêche", "§8- §b2§7x §fPommes dorées", "§8- §b1§7x §fCasque en fer", "§8- §b1§7x §fPlastron en diamant", "§8- §b1§7x §fJambières en fer", "§8- §b1§7x §fBottes en or"));
                                             ConfirmMenu.confirm.put(p.getUniqueId(), subMap);
                                             new ConfirmMenu().open(p);
-                                        } else if (statsAccount.getCoins() < 2500 && ffaKitsAccount.getPuncher() == 0) {
+                                        } else if (profilAccount.getCoins() < 2500 && ffaKitsAccount.getPuncher() == 0) {
                                             p.sendMessage(NotEnoughCoins);
                                         }
 
@@ -118,7 +121,7 @@ public class FFA implements Listener {
                                         itemStack.setItemMeta(itemMeta);
                                         break;
                                     case "§8■ §bCheaté":
-
+                                        StatsAccount statsAccount = (StatsAccount) memoryProvider.getStatsAccount(main.mainMap, uuid, AccountType.statsKey(AllNames.CJFFA.getName()));
                                         if (statsAccount.getElos() > 800 && ffaKitsAccount.getCheated() == 0) {
                                             subMap.put(invFFA, new ItemBuilder(Material.DIAMOND).setName("§8■ §bCheaté").setLore("§7Équipements", "", "§8- §b1§7x §fPomme cheatée", "§8- §b3§7x §fEnderpearls", "§8- §b1§7x §fCasque en fer", "§8- §b1§7x §fPlastron en diamant", "§8- §b1§7x §fJambières en diamant", "§8- §b1§7x §fBottes en or"));
                                             ConfirmMenu.confirm.put(p.getUniqueId(), subMap);
@@ -138,7 +141,7 @@ public class FFA implements Listener {
                                     default:
                                         break;
                                 }
-
+                                dirtyManager.markDirty(uuid, AccountType.CJFFAKITS.getKeyPrefix(), ffaKitsAccount);
                             }
                         }
 
