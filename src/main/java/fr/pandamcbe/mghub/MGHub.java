@@ -5,7 +5,6 @@ import fr.pandamcbe.mgapi.serverutilapi.NetworkState;
 import fr.pandamcbe.mgapi.serverutilapi.scoreboards.ScoreboardManager;
 import fr.pandamcbe.mghub.boards.leaderboard.Leaderboards;
 import fr.pandamcbe.mghub.commands.Commands;
-import fr.pandamcbe.mghub.commands.StatCommand;
 import fr.pandamcbe.mghub.commands.duelcommand.DuelCommand;
 import fr.pandamcbe.mghub.commands.duelcommand.DuelDatasManager;
 import fr.pandamcbe.mghub.commands.duelcommand.DuelMenu;
@@ -85,7 +84,6 @@ public final class MGHub extends JavaPlugin {
         getCommand("hub").setExecutor(new Commands());
         getCommand("lobby").setExecutor(new Commands());
         getCommand("duel").setExecutor(new DuelCommand());
-        getCommand("stats").setExecutor(new StatCommand());
 
         // Les listeners
         getServer().getPluginManager().registerEvents(new PlayerJoinListeners(), this);

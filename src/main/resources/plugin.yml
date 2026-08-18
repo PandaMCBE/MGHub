@@ -12,10 +12,6 @@ commands:
     permission-message: 'vous n''avez pas la permissions'
     aliases:
       - rp
-  stats:
-    permission: pandafun.commands.stats
-    permission-message: '§cVous n''avez pas la permission requise !'
-    description: Permet la gestion des stats d'un joueur.
   spawn:
     description: Ceci est une commande pour se teleporter au spawn du serveur.
     permission-message: '§cVous n''avez pas la permission requise !'

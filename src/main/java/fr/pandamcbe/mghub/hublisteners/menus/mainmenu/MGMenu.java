@@ -108,7 +108,7 @@ public class MGMenu implements Listener {
                         Main.getInstance().getProxyMessaging().connectToAnotherServer(AllNames.PFTSHOT.getName(), p);
                         break;
                     case "§8■ §c§lCJFFA":
-                        Main.getInstance().getProxyMessaging().connectToAnotherServer(AllNames.CJFFA.getName());
+                        Main.getInstance().getProxyMessaging().connectToAnotherServer(AllNames.CJFFA.getName(), p);
                         break;
                     case "§8■ §9§lR§6§lT§c§lF":
                         Main.getInstance().getProxyMessaging().connectToAnotherServer(AllNames.RTF.getName(), p);
