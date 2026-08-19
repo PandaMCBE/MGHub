@@ -34,7 +34,7 @@ public class MGMenu implements Listener {
 
        NetworkState networkState = MGHub.getInstance().getNetworkState();
 
-                ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getStatsAccount(MGHub.getInstance().mainMap, uuid, AccountType.PROFIL.getKeyPrefix());//
+                ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().mainMap, uuid, AccountType.PROFIL.getKeyPrefix());//
 
                 ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 5).setName("").toItemStack();
 

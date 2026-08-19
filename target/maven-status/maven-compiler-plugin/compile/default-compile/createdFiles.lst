@@ -15,7 +15,6 @@ fr\pandamcbe\mghub\hublisteners\menus\preferences\PrefsMenu$1.class
 fr\pandamcbe\mghub\hublisteners\menus\mainmenu\StatsMenu.class
 fr\pandamcbe\mghub\rediscommunication\RPbSbUtils$2.class
 runnables\AutoMessage.class
-fr\pandamcbe\mghub\commands\StatCommand.class
 fr\pandamcbe\mghub\hublisteners\menus\boutique\cosmetiques\sons\SonsItems.class
 fr\pandamcbe\mghub\hublisteners\mainevents\ParameterListeners.class
 fr\pandamcbe\mghub\hublisteners\menus\boutique\cosmetiques\cosmemenu\CosmetiqueMenu$1.class

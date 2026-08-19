@@ -12,15 +12,15 @@ commands:
     permission-message: 'vous n''avez pas la permissions'
     aliases:
       - rp
-  spawn:
-    description: Ceci est une commande pour se teleporter au spawn du serveur.
-    permission-message: '§cVous n''avez pas la permission requise !'
-  hub:
-    description: Ceci est une commande pour se teleporter au spawn du serveur.
-    permission-message: '§cVous n''avez pas la permission requise !'
-  lobby:
-    description: Ceci est une commande pour se teleporter au spawn du serveur.
-    permission-message: '§cVous n''avez pas la permission requise !'
+#  spawn:
+#    description: Ceci est une commande pour se teleporter au spawn du serveur.
+#    permission-message: '§cVous n''avez pas la permission requise !'
+#  hub:
+#    description: Ceci est une commande pour se teleporter au spawn du serveur.
+#    permission-message: '§cVous n''avez pas la permission requise !'
+#  lobby:
+#    description: Ceci est une commande pour se teleporter au spawn du serveur.
+#    permission-message: '§cVous n''avez pas la permission requise !'
   duel:
     description: permet de gérer les duels sur le serveur.
   holo:

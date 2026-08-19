@@ -80,9 +80,9 @@ public final class MGHub extends JavaPlugin {
 
         System.out.println("Main ON");
         getCommand("report").setExecutor(new Commands());
-        getCommand("spawn").setExecutor(new Commands());
-        getCommand("hub").setExecutor(new Commands());
-        getCommand("lobby").setExecutor(new Commands());
+//        getCommand("spawn").setExecutor(new Commands());
+//        getCommand("hub").setExecutor(new Commands());
+//        getCommand("lobby").setExecutor(new Commands());
         getCommand("duel").setExecutor(new DuelCommand());
 
         // Les listeners
