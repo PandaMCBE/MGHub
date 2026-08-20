@@ -2,10 +2,13 @@ package fr.pandamcbe.mghub.rediscommunication;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.DirtyManager;
+import fr.pandamcbe.mgapi.core.rediscache.RedisAccountsManager;
 import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisAccountsUtils;
 import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisMessage;
 import fr.pandamcbe.mgapi.serverutilapi.NetworkState;
+import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mghub.MGHub;
 import org.bukkit.Bukkit;
@@ -14,16 +17,16 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Type;
-import java.util.Map;
 import java.util.UUID;
 
 public class RPbSbUtils extends RedisAccountsUtils {
 
     private final Gson gson = new Gson();
 
+
     @Override
     public void subChannels() {
-        String[] channels = {AllNames.TELEPORTSPAWN.getName(), AllNames.NETWORKSTATE.getName()};
+        String[] channels = {AllNames.TELEPORTSPAWN.getName(), AllNames.NETWORKSTATE.getName(), AllNames.STATSCOMMAND.getName()};
         subCore(channels);
     }
 
@@ -53,12 +56,13 @@ public class RPbSbUtils extends RedisAccountsUtils {
 
                     break;
                 case STATSCOMMAND:
-                    Object account = redisMessage.getObject();
                     UUID uuid = redisMessage.getUuid();
-                    Map<String, Object> accountsMap = MGHub.getInstance().mainMap.get(uuid);
-                    String accoutName = account.getClass().getName();
-                    new DirtyManager().cancelPending(uuid, accoutName);
-                    accountsMap.put(accoutName, account);
+                    String accountName = redisMessage.getString();
+                    String json = (String) redisMessage.getObject();
+                    if(MGHub.getInstance().mainMap.containsKey(uuid)) {
+                        new DirtyManager().cancelPending(uuid, accountName);
+                        Main.getInstance().manipulation.sendAccountToMemory(MGHub.getInstance().mainMap, uuid, gson.fromJson(json, AccountType.fromName(RedisAccountsManager.ifContainsCategory(accountName)).getType()), accountName);
+                    }
                     break;
             }
         }
