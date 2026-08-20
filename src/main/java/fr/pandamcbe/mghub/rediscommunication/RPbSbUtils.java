@@ -2,6 +2,7 @@ package fr.pandamcbe.mghub.rediscommunication;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import fr.pandamcbe.mgapi.core.localmemory.DirtyManager;
 import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisAccountsUtils;
 import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisMessage;
 import fr.pandamcbe.mgapi.serverutilapi.NetworkState;
@@ -13,6 +14,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Type;
+import java.util.Map;
 import java.util.UUID;
 
 public class RPbSbUtils extends RedisAccountsUtils {
@@ -49,6 +51,14 @@ public class RPbSbUtils extends RedisAccountsUtils {
                         player.setHealth(20.0);
                     });
 
+                    break;
+                case STATSCOMMAND:
+                    Object account = redisMessage.getObject();
+                    UUID uuid = redisMessage.getUuid();
+                    Map<String, Object> accountsMap = MGHub.getInstance().mainMap.get(uuid);
+                    String accoutName = account.getClass().getName();
+                    new DirtyManager().cancelPending(uuid, accoutName);
+                    accountsMap.put(accoutName, account);
                     break;
             }
         }
