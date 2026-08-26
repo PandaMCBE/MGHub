@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import fr.pandamcbe.mgapi.Main;
 import fr.pandamcbe.mgapi.core.localmemory.DirtyManager;
 import fr.pandamcbe.mgapi.core.rediscache.RedisAccountsManager;
-import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisAccountsUtils;
+import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisPubSubManager;
 import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisMessage;
 import fr.pandamcbe.mgapi.serverutilapi.NetworkState;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AccountType;
@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.Type;
 import java.util.UUID;
 
-public class RPbSbUtils extends RedisAccountsUtils {
+public class RedisSubReception extends RedisPubSubManager {
 
     private final Gson gson = new Gson();
 
