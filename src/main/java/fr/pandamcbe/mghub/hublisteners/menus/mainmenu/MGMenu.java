@@ -34,7 +34,7 @@ public class MGMenu implements Listener {
 
        NetworkState networkState = MGHub.getInstance().getNetworkState();
 
-                ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().mainMap, uuid, AccountType.PROFIL.getKeyPrefix());//
+       ProfilAccount profilAccount = (ProfilAccount) Main.getInstance().manipulation.getProfilAccount(MGHub.getInstance().mainMap, uuid, AccountType.PROFIL.getKeyPrefix());//
 
                 ItemStack out = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((byte) 5).setName("").toItemStack();
 
@@ -84,6 +84,7 @@ public class MGMenu implements Listener {
         if (event.getView().getTitle().equals(invMain)) {
             event.setCancelled(true);
             p.updateInventory();
+            if(event.getCurrentItem().getItemMeta() != null) {
                 switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
 
                     case "§a↩ Retour":
@@ -117,8 +118,7 @@ public class MGMenu implements Listener {
                         break;
 
                 }
-
+            }
         }
-
     }
 }

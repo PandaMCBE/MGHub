@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.Type;
 import java.util.UUID;
 
-public class RedisSubReception extends RedisPubSubManager {
+public class RedisSubCatch extends RedisPubSubManager {
 
     private final Gson gson = new Gson();
 
@@ -38,8 +38,7 @@ public class RedisSubReception extends RedisPubSubManager {
         if (allNames != null) {
             switch (allNames) {
                 case NETWORKSTATE:
-                    Type type = new TypeToken<NetworkState>() {
-                    }.getType();
+                    Type type = new TypeToken<NetworkState>() {}.getType();
                     MGHub.getInstance().networkState = gson.fromJson(message, type);
                     break;
                 case TELEPORTSPAWN:

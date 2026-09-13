@@ -1,10 +1,12 @@
 package fr.pandamcbe.mghub.commands.duelcommand;
 
+import com.google.gson.Gson;
 import fr.pandamcbe.commons.DuelAccount;
 import fr.pandamcbe.mgapi.Main;
-import fr.pandamcbe.mgapi.core.localmemory.MemAccountsManipulation;
+import fr.pandamcbe.mgapi.data.management.redis.datas_manipulation.RedisMessage;
 import fr.pandamcbe.mgapi.serverutilapi.enums_strings.AllNames;
 import fr.pandamcbe.mghub.MGHub;
+import fr.pandamcbe.mghub.rediscommunication.RedisSubCatch;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,6 +15,8 @@ import org.bukkit.entity.Player;
 
 public class DuelCommand implements CommandExecutor {
 
+    private final RedisSubCatch subCatch = new RedisSubCatch();
+    private final Gson gson = new Gson();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -22,8 +26,7 @@ public class DuelCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         MGHub mgHub = MGHub.getInstance();
-        DuelDatasManager duelDatasManager = mgHub.duelDatasManager;
-        MemAccountsManipulation manipulation = Main.getInstance().manipulation;
+        DuelRequestManager duelDatasManager = mgHub.duelDatasManager;
         Player PlayerFirstSender = mgHub.duelDatasManager.getTargetKey().get(player);
 
         if (label.equalsIgnoreCase("duel")) {
@@ -38,37 +41,20 @@ public class DuelCommand implements CommandExecutor {
 
                 if (args[0].equalsIgnoreCase("accept")) {
                     if (duelDatasManager.getPlayerKey().containsValue(player) && duelDatasManager.getTargetKey().containsKey(player)) {
-                        duelDatasManager.getPlayerKey().remove(PlayerFirstSender);
-                        duelDatasManager.getTargetKey().remove(player);
-
+                        DuelAccount duelAccount = (DuelAccount) Main.getInstance().manipulation.getAccountFromMemory(MGHub.getInstance().mainMap, PlayerFirstSender.getUniqueId(), DuelAccount.class.getName());
+                        subCatch.publishMessage(AllNames.DUEL.getName(), new RedisMessage(PlayerFirstSender.getUniqueId(), gson.toJson(duelAccount)));
                         Main.getInstance().getProxyMessaging().connectToAnotherServer(AllNames.DUELS.getName(), PlayerFirstSender, player);
                     }
                 } else if (args[0].equalsIgnoreCase("deny")) {
                     if (duelDatasManager.getPlayerKey().containsValue(player) && duelDatasManager.getTargetKey().containsKey(player)) {
                         player.sendMessage(duelDatasManager.getPrefix() + "§b§lMG-Land > §6§lVous avez refusé sa demande de duel. Le pauvre :(");
                         PlayerFirstSender.sendMessage(duelDatasManager.getPrefix() + "Le joueur §a§l " + player.getName() + " §r§la refusé votre demande :(");
-                        duelDatasManager.getPlayerKey().remove(PlayerFirstSender);
-                        duelDatasManager.getTargetKey().remove(player);
-                        manipulation.deleteAccount(mgHub.mainMap, PlayerFirstSender.getUniqueId(), DuelAccount.class.getName());
+                        duelDatasManager.deleteRequest(player);
                     }
 
                 } else if (Bukkit.getPlayer(targetName) != null) {
                     Player target = Bukkit.getPlayer(targetName);
-                    if (target != player) {
-                        if(!duelDatasManager.getPlayerKey().containsKey(player)) {
-                            if (duelDatasManager.getPlayerKey().containsValue(target) && duelDatasManager.getTargetKey().containsKey(target)) {
-
-                                player.sendMessage("§f§l" + targetName + " §c§la déjà une demande en cour !");
-                            } else {
-                                duelDatasManager.getPlayerKey().put(player, target);
-                                duelDatasManager.getTargetKey().put(target, player);
-                                player.openInventory(DuelMenu.open(player));
-                            }
-                        } else {
-                            player.sendMessage(duelDatasManager.getPrefix() + "§cVous avez déjà envoyé une demande en cours !");
-                        }
-                    } else
-                        player.sendMessage(duelDatasManager.getPrefix() + " §cVous ne pouvez pas vous inviter à duel contre vous même !");
+                    duelDatasManager.sendRequest(player, target);
                 } else
                     player.sendMessage(duelDatasManager.getPrefix() + " §lLe joueur §b§l<§a§l " + targetName + " §l§b> §r§lest §c§lintrouvable/hors ligne");
 

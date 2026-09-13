@@ -70,6 +70,7 @@ public class PlayerJoinListeners implements Listener {
         User user = mgHub.luckPerms.getPlayerAdapter(Player.class).getUser(p);
         event.setQuitMessage(user.getCachedData().getMetaData().getPrefix() + " §r" + p.getName() + " §8§l[§c§l-§8§l]");
         mgHub.getScoreboardManager().onLogout(p);
+        mgHub.duelDatasManager.deleteRequest(p);
         dirtyManager.forceSave(mgHub.mainMap, p.getUniqueId());
         Main.getInstance().manipulation.deleteAccount(p.getUniqueId(), mgHub.mainMap);
     }

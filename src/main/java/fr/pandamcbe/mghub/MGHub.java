@@ -6,9 +6,8 @@ import fr.pandamcbe.mgapi.serverutilapi.scoreboards.ScoreboardManager;
 import fr.pandamcbe.mghub.boards.leaderboard.Leaderboards;
 import fr.pandamcbe.mghub.commands.Commands;
 import fr.pandamcbe.mghub.commands.duelcommand.DuelCommand;
-import fr.pandamcbe.mghub.commands.duelcommand.DuelDatasManager;
+import fr.pandamcbe.mghub.commands.duelcommand.DuelRequestManager;
 import fr.pandamcbe.mghub.commands.duelcommand.DuelMenu;
-import fr.pandamcbe.mghub.commands.duelcommand.Event;
 import fr.pandamcbe.mghub.fireworks.FireworksManager;
 import fr.pandamcbe.mghub.hublisteners.jumppads.PlayerMoveListener;
 import fr.pandamcbe.mghub.hublisteners.mainevents.ParameterListeners;
@@ -23,7 +22,7 @@ import fr.pandamcbe.mghub.hublisteners.menus.mainmenu.StatsMenu;
 import fr.pandamcbe.mghub.hublisteners.menus.preferences.PrefsMenu;
 import fr.pandamcbe.mghub.portals.MetricsLite;
 import fr.pandamcbe.mghub.portals.PortalsConfigFile;
-import fr.pandamcbe.mghub.rediscommunication.RPbSbUtils;
+import fr.pandamcbe.mghub.rediscommunication.RedisSubCatch;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -51,7 +50,7 @@ public final class MGHub extends JavaPlugin {
 
     private ScoreboardManager scoreboardManager;
 
-    public DuelDatasManager duelDatasManager;
+    public DuelRequestManager duelDatasManager;
 
     public Map<UUID, Map<String, Object>> mainMap;
 
@@ -98,14 +97,13 @@ public final class MGHub extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FFA(), this);
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
         getServer().getPluginManager().registerEvents(new DuelMenu(), this);
-        getServer().getPluginManager().registerEvents(new Event(), this);
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         getServer().setIdleTimeout(180);
         getServer().setDefaultGameMode(GameMode.ADVENTURE);
 
-        new RPbSbUtils().subChannels();
-        duelDatasManager = new DuelDatasManager();
+        new RedisSubCatch().subChannels();
+        duelDatasManager = new DuelRequestManager();
         mainMap = new HashMap<>();
         networkState = new NetworkState();
 //

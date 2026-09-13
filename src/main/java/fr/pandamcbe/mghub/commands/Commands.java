@@ -28,16 +28,6 @@ public class Commands implements CommandExecutor {
                 return true;
 
             }
-//            if (cmd.getName().equalsIgnoreCase("spawn") || cmd.getName().equalsIgnoreCase("lobby") || cmd.getName().equalsIgnoreCase("hub")) {
-//                player.teleport(new Location(Bukkit.getWorld("worldlobby"), 100000.500f, 57, 100000.500f, -90.0f, -1.0f));
-//                player.sendMessage("§7Vous avez été téléporté au lobby..");
-//                if (player.getGameMode() != GameMode.ADVENTURE) {
-//                    player.setGameMode(GameMode.ADVENTURE);
-//                }
-//                player.setHealth(20.0);
-//                return true;
-//
-//            }
 
         }
         return false;

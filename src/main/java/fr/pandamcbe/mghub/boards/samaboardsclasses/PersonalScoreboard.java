@@ -22,7 +22,7 @@ public class PersonalScoreboard extends fr.pandamcbe.mgapi.serverutilapi.scorebo
     public void setLines(String ip) {
         User user = MGHub.getInstance().luckPerms.getPlayerAdapter(Player.class).getUser(player);
         this.objectiveSign.setLine(1, "§8§m----------------");
-        this.objectiveSign.setLine(2, "§7Uniques : §f" + Bukkit.getServer().getOnlinePlayers().size());
+        this.objectiveSign.setLine(2, "§7Uniques : §f" + Bukkit.getServer().getOfflinePlayers().length);
         this.objectiveSign.setLine(3, "§7Connectés : §f" + MGHub.getInstance().getNetworkState().getTotalPlayers());
         this.objectiveSign.setLine(4, "§7Pseudo : §f" + player.getName());
         this.objectiveSign.setLine(5, "§7Grade : §f" + user.getCachedData().getMetaData().getPrefix());

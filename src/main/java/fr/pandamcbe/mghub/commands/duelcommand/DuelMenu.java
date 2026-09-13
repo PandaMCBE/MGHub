@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.UUID;
@@ -23,18 +24,18 @@ import java.util.UUID;
 public class DuelMenu implements Listener {
 
     private static final String invName = "Choisir un duel";
-    private static final Inventory inventory = Bukkit.createInventory(null, 9, invName);
     private final String DuelPojo = DuelAccount.class.getName();
 
-    public static Inventory open(Player player) {
+    public static void open(Player player) {
+        final Inventory inventory = Bukkit.createInventory(player, 9, invName);
+
         //inventory.setItem(2, new ItemBuilder(Material.LAVA_BUCKET).setName("§6§l BuildUHC").toItemStack());
         inventory.setItem(3, new ItemBuilder(Material.FISHING_ROD).setName("§6§l SG").toItemStack());
         //inventory.setItem(5, new ItemBuilder(Material.SLIME_BALL).setName("§6§l Sumo").toItemStack());
         //inventory.setItem(6, new ItemBuilder(Material.SKULL_ITEM).setSkullOwner(player).setDurability((byte) 3).setName("§6§l PvBot").toItemStack());
         inventory.setItem(4, new ItemBuilder(Material.SANDSTONE).setName("§6§l MLGRush").toItemStack());
 
-        player.updateInventory();
-        return inventory;
+        player.openInventory(inventory);
     }
 
     @EventHandler
@@ -52,42 +53,41 @@ public class DuelMenu implements Listener {
             MemAccountsManipulation memoryProvider = Main.getInstance().manipulation;
             DuelAccount duelAccount = new DuelAccount(p.getUniqueId(), target.getUniqueId(), "");
             if (profilAccount.getDuel_allow() == 1) {
-                switch (event.getCurrentItem().getType()) {
-                    case LAVA_BUCKET:
-                        duelAccount.setGamemode(AllNames.BUILDUHC.getName());
-                        p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en BuildUHC à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
-                        target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE BUILDUHC !");
-                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
-                        break;
-                    case FISHING_ROD:
-                        duelAccount.setGamemode(AllNames.SG.getName());
-                        p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en SG à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
-                        target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE SG !");
-                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
-                        break;
-                    case SLIME_BALL:
-                        duelAccount.setGamemode(AllNames.SUMO.getName());
-                        p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en SUMO à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
-                        target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE SUMO !");
-                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
-                        break;
-                    case SKULL_ITEM:
-                        duelAccount.setGamemode(AllNames.PVBOT.getName());
-                        p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en PvBot à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
-                        target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE PVBOT !");
-                        memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
-                        break;
-                    case SANDSTONE:
-                        duelAccount.setGamemode(AllNames.MLGRUSH.getName());
-                        p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en MLGRush à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
-                        target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE MLGRush !");
-                        break;
-                    default:
-                        break;
+                if(event.getCurrentItem().getItemMeta() != null) {
+                    switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
+                        case "§6§l BuildUHC":
+                            duelAccount.setGamemode(AllNames.BUILDUHC.getName());
+                            p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en BuildUHC à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
+                            target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE BUILDUHC !");
+                            break;
+                        case "§6§l SG":
+                            duelAccount.setGamemode(AllNames.SG.getName());
+                            p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en SG à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
+                            target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE SG !");
+                            break;
+                        case "§6§l Sumo":
+                            duelAccount.setGamemode(AllNames.SUMO.getName());
+                            p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en SUMO à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
+                            target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE SUMO !");
+                            break;
+                        case "§6§l PvBot":
+                            duelAccount.setGamemode(AllNames.PVBOT.getName());
+                            p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en PvBot à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
+                            target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE PVBOT !");
+                            break;
+                        case "§6§l MLGRush":
+                            duelAccount.setGamemode(AllNames.MLGRUSH.getName());
+                            p.sendMessage(main.duelDatasManager.getPrefix() + "§lVous venez d'envoyer une demande de duel en MLGRush à §a§l" + target.getName() + " §r§l" + user2.getCachedData().getMetaData().getPrefix());
+                            target.sendMessage(main.duelDatasManager.getPrefix() + "§b§l" + p.getName() + " §r§l" + user1.getCachedData().getMetaData().getPrefix() + " §e§lVous a demandé en DUEL DE MLGRush !");
+                            break;
+                        default:
+                            break;
 
+                    }
+                } else {
+                    main.duelDatasManager.notConfirmedMode(p);
                 }
                 memoryProvider.sendAccountToMemory(main.mainMap, p.getUniqueId(), duelAccount, DuelPojo);
-                memoryProvider.sendAccountToMemory(main.mainMap, target.getUniqueId(), duelAccount, DuelPojo);
                 p.closeInventory();
 
             } else {
@@ -97,4 +97,18 @@ public class DuelMenu implements Listener {
         }
     }
 
+
+    @EventHandler
+    public void onCloseInventory(InventoryCloseEvent event){
+        Inventory inv = event.getInventory();
+        Player p = (Player) event.getPlayer();
+        UUID uuid = p.getUniqueId();
+        DuelRequestManager duelDatasManager = MGHub.getInstance().duelDatasManager;
+        if(inv.getTitle().equalsIgnoreCase("Choisir un duel")){
+            Player target = duelDatasManager.getPlayerKey().get(p);
+//            Bukkit.getScheduler().runTaskLater(MGHub.getInstance(), ()-> {
+                duelDatasManager.notConfirmedMode(p);
+//            }, 20L);
+        }
+    }
 }
