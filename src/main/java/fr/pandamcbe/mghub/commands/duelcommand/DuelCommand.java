@@ -48,7 +48,7 @@ public class DuelCommand implements CommandExecutor {
                 } else if (args[0].equalsIgnoreCase("deny")) {
                     if (duelDatasManager.getPlayerKey().containsValue(player) && duelDatasManager.getTargetKey().containsKey(player)) {
                         player.sendMessage(duelDatasManager.getPrefix() + "§b§lMG-Land > §6§lVous avez refusé sa demande de duel. Le pauvre :(");
-                        PlayerFirstSender.sendMessage(duelDatasManager.getPrefix() + "Le joueur §a§l " + player.getName() + " §r§la refusé votre demande :(");
+                        PlayerFirstSender.sendMessage(duelDatasManager.getPrefix() + "§lLe joueur §a " + player.getName() + " §r§la refusé votre demande :(");
                         duelDatasManager.deleteRequest(player);
                     }
 

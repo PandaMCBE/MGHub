@@ -84,6 +84,7 @@ public class DuelMenu implements Listener {
                             break;
 
                     }
+                    main.duelDatasManager.getExpireAt().put(p, System.currentTimeMillis());
                 } else {
                     main.duelDatasManager.notConfirmedMode(p);
                 }
@@ -102,13 +103,9 @@ public class DuelMenu implements Listener {
     public void onCloseInventory(InventoryCloseEvent event){
         Inventory inv = event.getInventory();
         Player p = (Player) event.getPlayer();
-        UUID uuid = p.getUniqueId();
         DuelRequestManager duelDatasManager = MGHub.getInstance().duelDatasManager;
-        if(inv.getTitle().equalsIgnoreCase("Choisir un duel")){
-            Player target = duelDatasManager.getPlayerKey().get(p);
-//            Bukkit.getScheduler().runTaskLater(MGHub.getInstance(), ()-> {
-                duelDatasManager.notConfirmedMode(p);
-//            }, 20L);
+        if(inv.getTitle().equalsIgnoreCase("Choisir un duel")) {
+            duelDatasManager.notConfirmedMode(p);
         }
     }
 }

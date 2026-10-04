@@ -55,7 +55,7 @@ public class DuelRequestManager {
         } else {
             getExpireAt().remove(player);
         }
-        return 0L;
+        return null;
     }
 
     public void removeExpiration(Player player) {
@@ -73,7 +73,7 @@ public class DuelRequestManager {
 
     public void sendRequest(Player sender, Player target){
         if (target != sender) {
-            if(!getPlayerKey().containsKey(sender) && expirationAt(sender) < 30) {
+            if(expirationAt(sender) == null || expirationAt(sender) >= 30) {
                 deleteRequest(sender);
                 if (getPlayerKey().containsValue(target) && getTargetKey().containsKey(target)) {
 
@@ -81,11 +81,10 @@ public class DuelRequestManager {
                 } else {
                     getPlayerKey().put(sender, target);
                     getTargetKey().put(target, sender);
-                    getExpireAt().put(sender, System.currentTimeMillis());
                     DuelMenu.open(sender);
                 }
             } else {
-                sender.sendMessage(getPrefix() + "§cVous avez déjà une demande en cours ! Veuillez encore patienter :" + expirationAt(sender) + "§cs");
+                sender.sendMessage(getPrefix() + "§cVous avez déjà une demande en cours ! Veuillez encore patienter :" + (30 - expirationAt(sender)) + "§cs");
             }
         } else {
             sender.sendMessage(getPrefix() + " §cVous ne pouvez pas vous inviter à duel contre vous même !");
